@@ -7,3 +7,6 @@ before_install:
 
 script:
   - sudo ./.ci/build.sh
+
+before_deploy:
+  - sudo ./.ci/deploy.sh

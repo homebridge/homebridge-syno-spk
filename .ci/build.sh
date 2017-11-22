@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 cd /toolkit
 
 # move build files into source dir
