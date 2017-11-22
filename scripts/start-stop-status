@@ -5,6 +5,7 @@ cd $SYNOPKG_PKGDEST
 case $1 in
 	start)
 		### Start this package.
+                docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml pull homebridge
 		docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml up -d
 		if [ "$?" -eq "0" ]; then
 			synodsmnotify @administrators "Homebridge Docker" "Homebridge has started."
