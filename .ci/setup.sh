@@ -34,12 +34,3 @@ cp -R /home/travis/.gnupg /toolkit/build_env/ds.x64-6.0/root/.gnupg
 cp -R /home/travis/.gnupg /toolkit/build_env/ds.x64-6.0/home/travis/.gnupg
 chown -R root:root /toolkit/build_env/ds.x64-6.0/root/.gnupg /toolkit/build_env/ds.x64-6.0/home/travis/.gnupg
 chmod -R 600 /toolkit/build_env/ds.x64-6.0/root/.gnupg /toolkit/build_env/ds.x64-6.0/home/travis/.gnupg
-
-# move build files into source dir
-mkdir -p /toolkit/source
-cp -R $TRAVIS_BUILD_DIR /toolkit/source/homebridge-syno-spk
-
-# build spk
-./pkgscripts-ng/PkgCreate.py -c homebridge-syno-spk
-
-

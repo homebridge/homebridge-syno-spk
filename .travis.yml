@@ -6,4 +6,4 @@ before_install:
   - sudo ./.ci/setup.sh
 
 script:
-  - exit 0
+  - sudo ./.ci/build.sh
