@@ -28,10 +28,11 @@ cat >foo <<EOF
 EOF
 
 gpg --batch --gen-key foo
-gpg -k
 
 # copy gpg keys into chroot env
 cp -R /home/travis/.gnupg /toolkit/build_env/ds.x64-6.0/root/.gnupg
+chown -R root:root /toolkit/build_env/ds.x64-6.0/root/.gnupg
+chmod -R 600 /toolkit/build_env/ds.x64-6.0/root/.gnupg
 
 # move build files into source dir
 mkdir -p /toolkit/source
