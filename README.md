@@ -12,7 +12,7 @@ This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/hom
 
 ## How to install
 
-**Step 1:** Download the latest `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases
+**Step 1:** Download the latest `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/latest
 
 **Step 2:** Open Package Center in DSM and select the `Manual Install` option.
 
