@@ -9,8 +9,8 @@
             "defaultValue": "homebridge",
             "validator": {
                 "allowBlank": false,
-                "minLength": 2,
-                "maxLength": 10
+                "minLength": 1,
+                "maxLength": 32
             }
        	}]
     }]

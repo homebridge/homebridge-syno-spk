@@ -1,5 +1,4 @@
 #!/bin/bash
-# Copyright (c) 2000-2016 Synology Inc. All rights reserved.
 
 source /pkgscripts/include/pkg_util.sh
 
