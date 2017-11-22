@@ -1,4 +1,4 @@
-# Synology Package for Homebridge Docker.
+# Synology Package for Homebridge Docker
 
 This third-party Synology Package simplifies the process of running [oznu/docker-homebridge](https://github.com/oznu/docker-homebridge) on DSM 6.1.4 or later.
 
@@ -8,7 +8,7 @@ This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/hom
 * `-e TZ` variable is set based on your current timezone of your Synology NAS.
 * `-e PUID` variable is set to the same UID as the user who installs the package in DSM.
 * `-e PGID` variable is set to the same GID as the user who isntalls the package in DSM.
-* `-v /homebridge` is setup automatically using a share choosen by you during the installation. If the share does not exist it will create it for you.
+* `-v /homebridge` is setup automatically using a share chosen by you during the installation. If the share does not exist it will create it for you.
 
 ## How to install
 
