@@ -22,7 +22,6 @@ cat >foo <<EOF
      Name-Comment: not my real gpg key
      Name-Email: dev@oz.nu
      Expire-Date: 0
-     Passphrase: abc
      %commit
      %echo done
 EOF
