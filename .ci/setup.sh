@@ -2,6 +2,16 @@
 
 set -x
 
+# create base
+mkdir /toolkit
+cd /toolkit
+
+# get syno build tools
+git clone https://github.com/SynologyOpenSource/pkgscripts-ng.git 
+
+# deploy chroot env
+./pkgscripts-ng/EnvDeploy -q -v 6.0 -p x64
+
 # this gpg key is never going to be validated so it does not need to be secure
 cat >foo <<EOF
      Key-Type: RSA
@@ -18,16 +28,10 @@ cat >foo <<EOF
 EOF
 
 gpg --batch --gen-key foo
-cp -R /root/.gnupg /toolkit/build_env/ds.x64-6.0/root/.gnupg
+gpg -k
 
-exit 0
-
-mkdir /toolkit
-cd /toolkit
-git clone https://github.com/SynologyOpenSource/pkgscripts-ng.git 
-
-./pkgscripts-ng/EnvDeploy -q -v 6.0 -p x64
-
+# copy gpg keys into chroot env
+cp -R /home/travis/.gnupg /toolkit/build_env/ds.x64-6.0/root/.gnupg
 
 
 
