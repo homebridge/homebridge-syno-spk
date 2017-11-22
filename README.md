@@ -1,3 +1,5 @@
+[![Travis](https://img.shields.io/travis/oznu/homebridge-syno-spk.svg)](https://travis-ci.org/oznu/homebridge-syno-spk) [![GitHub release](https://img.shields.io/github/release/oznu/homebridge-syno-spk.svg)](https://github.com/oznu/homebridge-syno-spk/releases/latest)
+
 # Synology Package for Homebridge Docker
 
 This third-party Synology Package simplifies the process of running [oznu/docker-homebridge](https://github.com/oznu/docker-homebridge) on DSM 6.1.4 or later.
