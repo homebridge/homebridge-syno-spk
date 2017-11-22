@@ -1,0 +1,9 @@
+language: bash
+
+sudo: required
+
+before_install:
+  - ./.ci/setup.sh
+
+script:
+  - exit 0
