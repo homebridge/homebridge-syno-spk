@@ -33,5 +33,11 @@ gpg -k
 # copy gpg keys into chroot env
 cp -R /home/travis/.gnupg /toolkit/build_env/ds.x64-6.0/root/.gnupg
 
+# move build files into source dir
+mkdir -p /toolkit/source
+cp -R $TRAVIS_BUILD_DIR /toolkit/source/homebridge-syno-spk
+
+# build spk
+./pkgscripts-ng/PkgCreate.py -c homebridge-syno-spk
 
 
