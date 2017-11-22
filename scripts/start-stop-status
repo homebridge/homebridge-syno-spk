@@ -1,0 +1,35 @@
+#!/bin/sh
+
+cd $SYNOPKG_PKGDEST
+
+case $1 in
+	start)
+		### Start this package.
+		docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml up -d
+		if [ "$?" -eq "0" ]; then
+			synodsmnotify @administrators "Homebridge Docker" "Homebridge has started."
+		else
+			synodsmnotify @administrators "Homebridge Docker" "Homebridge failed to start."
+		fi
+		exit 0
+	;;
+	stop)
+		### Stop this package.
+		docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml stop
+		exit 0
+	;;
+	status)
+		HOMEBRIDGE_STATUS=$(docker inspect homebridge | jq -r '.[].State.Status')
+		if [[ "$HOMEBRIDGE_STATUS" -eq "running" ]]; then
+			exit 0
+		else
+			exit 1
+		fi
+	;;
+	killall)
+        ;;
+	log)
+		exit 0
+	;;
+esac
+

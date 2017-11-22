@@ -1,0 +1,10 @@
+{
+  "data-share": {
+    "shares": [{
+      "name": "{{homebridge_pkgwizard_share_name}}",
+      "permission": {
+        "rw": ["admin"]
+      }
+    }]
+  }
+}

@@ -1,0 +1,18 @@
+### Needed key ###
+package="Package_name. (with no blank)"
+version="Package_version. (with no blank)"
+description="Package Center shows a short description of the package"
+maintainer="Package Center shows the developer of the package"
+arch="List the CPU architectures which can be used to install the package. default=noarch"
+
+### Optional key ###
+displayname="Package center display name."
+firmware="Minimum version of DSM firmware that is required to run the package."
+support_url="Package Center shows a support link to allow users to seek technical support when needed"
+distributor="Package Center shows the publisher of the package"
+distributor_url="If a package is installed and has a "help" webpage, Package Center will show a link to let user open it"
+thirdparty="yes"
+startable="yes/no"
+silent_install="yes/no"
+silent_upgrade="yes/no"
+silent_uninstall="yes/no"

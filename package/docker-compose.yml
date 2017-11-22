@@ -1,0 +1,13 @@
+version: '2'
+services:
+  homebridge:
+    container_name: homebridge
+    image: oznu/homebridge:latest
+    network_mode: host
+    restart: always
+    volumes:
+      - "${HOMEBRIDGE_VOL}:/homebridge"
+    environment:
+      - PUID=${HOMEBRIDGE_PUID}
+      - PGID=${HOMEBRIDGE_PGID}
+      - TZ=${HOMEBRIDGE_TZ}

@@ -1,0 +1,17 @@
+[{
+    "step_title": "Create Homebridge File Share",
+    "items": [{
+        "type": "textfield",
+        "desc": "Please enter the name of the file share you want to use for your Homebridge config. If the share does not exist it will be created.",
+        "subitems": [{
+            "key": "homebridge_pkgwizard_share_name",
+            "desc": "Homebridge Share Name",
+            "defaultValue": "homebridge",
+            "validator": {
+                "allowBlank": false,
+                "minLength": 2,
+                "maxLength": 10
+            }
+       	}]
+    }]
+}]
