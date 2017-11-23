@@ -1,17 +1,20 @@
 [{
     "step_title": "Create Homebridge File Share",
+    "invalid_next_disabled": true,
     "items": [{
         "type": "textfield",
-        "desc": "Please enter the name of the file share you want to use for your Homebridge config. If the share does not exist it will be created.",
+        "desc": "Please enter the path where your Homebridge config should be stored.",
         "subitems": [{
             "key": "homebridge_pkgwizard_share_name",
-            "desc": "Homebridge Share Name",
-            "defaultValue": "homebridge",
+            "desc": "Homebridge Config Path",
+            "defaultValue": "/volume1/docker/homebridge",
             "validator": {
                 "allowBlank": false,
-                "minLength": 1,
-                "maxLength": 32
+                "regex": {
+                    "expr": "/^\\\/volume[0-9]+\\\//",
+                    "errorText": "Path should begin with /volume?/ with ? the number of the volume"
+                }
             }
-       	}]
-    }]
+        }
+    } 
 }]

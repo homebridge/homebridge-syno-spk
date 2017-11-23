@@ -21,7 +21,7 @@ case $1 in
 	;;
 	status)
 		HOMEBRIDGE_STATUS=$(docker inspect homebridge | jq -r '.[].State.Status')
-		if [[ "$HOMEBRIDGE_STATUS" -eq "running" ]]; then
+		if [ "$HOMEBRIDGE_STATUS" = "running" ]; then
 			exit 0
 		else
 			exit 1

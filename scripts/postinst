@@ -2,20 +2,19 @@
 
 ### This script will be executed when package installed and upgraded.
 
-HOMEBRIDGE_TZ=$(synodate --getNameInTZDB)
-HOMEBRIDGE_PUID=$(id $SYNOPKG_USERNAME -u)
-HOMEBRIDGE_PGID=$(id $SYNOPKG_USERNAME -g)
-HOMEBRIDGE_SHARE=$(synoshare --get "$homebridge_pkgwizard_share_name" | grep Path | awk -F\[ '{print $2}' | awk -F\] '{print $1}')
-HOMEBRIDGE_VOL="$HOMEBRIDGE_SHARE/homebridge-config"
+if [ "$SYNOPKG_PKG_STATUS" = "INSTALL" ]; then
+	HOMEBRIDGE_TZ=$(synodate --getNameInTZDB)
+	HOMEBRIDGE_PUID=$(id $SYNOPKG_USERNAME -u)
+	HOMEBRIDGE_PGID=$(id $SYNOPKG_USERNAME -g)
+	HOMEBRIDGE_VOL="$homebridge_pkgwizard_share_name"
 
-echo "HOMEBRIDGE_TZ=$HOMEBRIDGE_TZ
-HOMEBRIDGE_PUID=$HOMEBRIDGE_PUID
-HOMEBRIDGE_PGID=$HOMEBRIDGE_PGID
-HOMEBRIDGE_SHARE=$HOMEBRIDGE_SHARE
-HOMEBRIDGE_VOL=$HOMEBRIDGE_VOL" > $SYNOPKG_PKGDEST/.env
+	echo "HOMEBRIDGE_TZ=$HOMEBRIDGE_TZ
+	HOMEBRIDGE_PUID=$HOMEBRIDGE_PUID
+	HOMEBRIDGE_PGID=$HOMEBRIDGE_PGID
+	HOMEBRIDGE_VOL=$HOMEBRIDGE_VOL" > $SYNOPKG_PKGDEST/.env
 
-mkdir "$HOMEBRIDGE_VOL"
-chmod 755 "$HOMEBRIDGE_VOL"
+	chmod 755 $homebridge_pkgwizard_share_name
+fi
 
 cd $SYNOPKG_PKGDEST
 docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml pull

@@ -4,4 +4,6 @@
 ### Actions before package upgraded.
 ### ex. backup user settings for package upgrade.
 
+cp $SYNOPKG_PKGDEST/.env $SYNOPKG_TEMP_UPGRADE_FOLDER/.env
+
 exit 0

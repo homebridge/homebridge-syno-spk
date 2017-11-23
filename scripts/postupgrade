@@ -4,4 +4,6 @@
 ### Actions after package upgraded.
 ### ex. restore user settings.
 
+cp $SYNOPKG_TEMP_UPGRADE_FOLDER/.env $SYNOPKG_PKGDEST/.env
+
 exit 0

@@ -4,7 +4,25 @@
 ### Actions before package installed.
 ### ex. check environment.
 
-# Remove any existing containers named 'homebridge'
-docker rm -f homebridge
+if [ "$SYNOPKG_PKG_STATUS" = "INSTALL" ]; then
+	HOMEBRIDGE_BASE=$(dirname $homebridge_pkgwizard_share_name)
+
+	if [ ! -d $HOMEBRIDGE_BASE ]; then
+		echo "$HOMEBRIDGE_BASE is not a directory. Cannot create $homebridge_pkgwizard_share_name." > $SYNOPKG_TEMP_LOGFILE
+		exit 1
+	elif [ -f $homebridge_pkgwizard_share_name ]; then
+		echo "$homebridge_pkgwizard_share_name is a file. $SYNOPKG_PKG_STATUS" > $SYNOPKG_TEMP_LOGFILE
+		exit 1
+	fi
+
+	[ -d $homebridge_pkgwizard_share_name ] || mkdir $homebridge_pkgwizard_share_name
+	if [ "$?" -ne "0" ]; then
+		echo "Failed to create $homebridge_pkgwizard_share_name." > $SYNOPKG_TEMP_LOGFILE
+	        exit 1
+	fi
+
+	# Remove any existing containers named 'homebridge'
+	docker rm -f homebridge
+fi
 
 exit 0
