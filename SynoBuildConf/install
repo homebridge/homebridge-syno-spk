@@ -39,7 +39,7 @@ create_spk(){
 	cp -R WIZARD_UIFILES $PKG_DIR/WIZARD_UIFILES
 
         ### Copy Conf
-        cp -R conf $PKG_DIR/conf
+        # cp -R conf $PKG_DIR/conf
 
 	### Create the final spk.
 	# pkg_make_spk <source path> <dest path> <spk file name>
