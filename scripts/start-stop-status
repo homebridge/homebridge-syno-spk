@@ -12,6 +12,9 @@ case $1 in
 		else
 			synodsmnotify @administrators "Homebridge Docker" "Homebridge failed to start."
 		fi
+
+		### Remove old, untagged versions of oznu/homebridge
+		docker rmi $(docker images -q -f "reference=oznu/homebridge" -f "dangling=true") || echo "No older images to remove"
 		exit 0
 	;;
 	stop)
