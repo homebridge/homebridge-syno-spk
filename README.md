@@ -26,6 +26,8 @@ This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/hom
 
 **Step 5:** Complete the wizard. The first time you install may take some time as the latest [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) image is downloaded from Docker Hub.
 
+**Step 6:** Instructions on how to install plugins can be found on the main [Homebridge on Synology Wiki Page](https://github.com/oznu/docker-homebridge/wiki/Homebridge-on-Synology#3-installing-plugins).
+
 ## Setting up for development
 
 See the [Synology DSM 6.0 Developer Guide](https://developer.synology.com/developer-guide/index.html).
