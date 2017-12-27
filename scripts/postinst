@@ -13,6 +13,15 @@ if [ "$SYNOPKG_PKG_STATUS" = "INSTALL" ]; then
 	HOMEBRIDGE_PGID=$HOMEBRIDGE_PGID
 	HOMEBRIDGE_VOL=$HOMEBRIDGE_VOL" > $SYNOPKG_PKGDEST/.env
 
+	# Install homebridge-config-ui-x if required
+	if [ "$homebridge_pkgwizard_install_ui_true" = "true" ]; then
+		echo "HOMEBRIDGE_CONFIG_UI=1" >> $SYNOPKG_PKGDEST/.env
+		[ -f $SYNOPKG_PKGDEST/ui/config.disabled ] && $SYNOPKG_PKGDEST/ui/config.disabled $SYNOPKG_PKGDEST/ui/config
+	else
+		echo "HOMEBRIDGE_CONFIG_UI=0" >> $SYNOPKG_PKGDEST/.env
+		[ -f $SYNOPKG_PKGDEST/ui/config ] && mv $SYNOPKG_PKGDEST/ui/config $SYNOPKG_PKGDEST/ui/config.disabled
+	fi
+
 	chmod 755 $homebridge_pkgwizard_share_name
 fi
 

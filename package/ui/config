@@ -1,0 +1,15 @@
+{
+    ".url": {
+        "oznu.homebridge": {
+            "title": "Homebridge",
+            "desc": "Homebridge Config UI App",
+            "icon": "images/icon_256.png",
+            "type": "url",
+            "protocol": "http",
+            "port": "8581",
+            "url": "/",
+            "allUsers": true,
+            "grantPrivilege": "local"
+        }
+    }
+}

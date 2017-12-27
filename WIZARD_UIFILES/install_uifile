@@ -15,6 +15,23 @@
                     "errorText": "Path should begin with /volume?/ with ? the number of the volume"
                 }
             }
-        }
-    } 
+        }]
+    }] 
+}, {
+    "step_title": "Homebridge Config UI",
+    "invalid_next_disable": true,
+    "desc": "Does desc work?",
+    "items": [{
+        "type": "singleselect",
+        "desc": "Do you want to install the Homebridge Config UI? This will allow you to monitor, backup and configure Homebridge from a browser.",
+        "subitems": [{
+            "key": "homebridge_pkgwizard_install_ui_true",
+            "desc": "Yes",
+            "defaultValue": true
+        }, {
+            "key": "homebridge_pkgwizard_install_ui_false",
+            "desc": "No",
+            "defaultValue": false
+        }]
+    }]
 }]
