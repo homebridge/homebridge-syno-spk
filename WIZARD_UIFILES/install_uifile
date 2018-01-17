@@ -18,12 +18,11 @@
         }]
     }] 
 }, {
-    "step_title": "Homebridge Config UI",
+    "step_title": "Homebridge Config UI X",
     "invalid_next_disable": true,
-    "desc": "Does desc work?",
     "items": [{
         "type": "singleselect",
-        "desc": "Do you want to install the Homebridge Config UI? This will allow you to monitor, backup and configure Homebridge from a browser.",
+        "desc": "Do you want to install Homebridge Config UI X? This will allow you to monitor, backup and configure Homebridge from a browser. The default user is \"admin\" with password \"admin\".",
         "subitems": [{
             "key": "homebridge_pkgwizard_install_ui_true",
             "desc": "Yes",
