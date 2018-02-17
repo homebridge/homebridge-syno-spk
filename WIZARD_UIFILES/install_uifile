@@ -16,7 +16,23 @@
                 }
             }
         }]
-    }] 
+    }]
+}, {
+    "step_title": "Run Homebridge In Safe Mode?",
+    "invalid_next_disable": true,
+    "items": [{
+        "type": "singleselect",
+        "desc": "Would you like to run Homebridge in safe mode? If you're having trouble discovering Homebridge on your iOS device after setup you should reinstall using safe mode, beware a small number of plugins will not work properly in safe mode.",
+        "subitems": [{
+            "key": "homebridge_pkgwizard_no_avahi_false",
+            "desc": "No - Install the normal version of Homebridge Docker.",
+            "defaultValue": true
+        }, {
+            "key": "homebridge_pkgwizard_no_avahi_true",
+            "desc": "Yes - Install in safe mode. Select this if you're having trouble finding Homebridge.",
+            "defaultValue": false
+        }]
+    }]
 }, {
     "step_title": "Homebridge Config UI X",
     "invalid_next_disable": true,

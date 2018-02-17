@@ -3,7 +3,7 @@
 source /pkgscripts/include/pkg_util.sh
 
 package="HomebridgeDocker"
-version="1.0.5"
+version="1.0.6"
 maintainer="oznu"
 displayname="Homebridge Docker"
 description="HomeKit support for the impatient using Docker on Synology DSM."
@@ -16,6 +16,7 @@ install_dep_packages="Docker>=1.11.2"
 dsmuidir="ui"
 dsmappname="oznu.homebridge"
 silent_install="no"
+silent_upgrade="no"
 qinst="false"
 adminprotocol="http"
 adminurl=""

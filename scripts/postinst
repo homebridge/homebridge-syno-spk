@@ -22,6 +22,13 @@ if [ "$SYNOPKG_PKG_STATUS" = "INSTALL" ]; then
 		[ -f $SYNOPKG_PKGDEST/ui/config ] && mv $SYNOPKG_PKGDEST/ui/config $SYNOPKG_PKGDEST/ui/config.disabled
 	fi
 
+	# Enable safe mode if requested
+	if [ "$homebridge_pkgwizard_no_avahi_true" = "true" ]; then
+		sed -i 's/homebridge:latest/homebridge:no-avahi/g' $SYNOPKG_PKGDEST/docker-compose.yml
+	else
+		sed -i 's/homebridge:no-avahi/homebridge:latest/g' $SYNOPKG_PKGDEST/docker-compose.yml
+	fi
+
 	chmod 755 $homebridge_pkgwizard_share_name
 fi
 
