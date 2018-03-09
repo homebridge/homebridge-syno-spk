@@ -36,6 +36,31 @@ The Homebridge Config UI app starts on port `8581`. The default username is **ad
 
 Homebridge can be updated from inside the Config UI. From time to time you may need to upgrade the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) image which can be done by stopping and starting the package in the Synology DSM Package Center.
 
+## Adding Additional Packages
+
+Some plugins may require additional packages to be installed which can be done by editing the `startup.sh` script.
+
+The `startup.sh` file will be created in the volume you choose during the setup wizard. The Homebridge UI does not provide a way to edit this file so you'll need to do this using DSM or your own computer's editor.
+
+Example `startup.sh` file to install `ffmpeg`:
+
+```shell
+#!/bin/sh
+
+apk add --no-cache ffmpeg ffmpeg-libs
+```
+
+Example `startup.sh` file to install `libpcap-dev`:
+
+
+```shell
+#!/bin/sh
+
+apk add --no-cache libpcap-dev
+```
+
+**To apply the changes made to the `startup.sh` file you need to restart the entire container using the Docker app in DSM.**
+
 ## Issues
 
 If you have an issue with the installation of Homebridge using this package please raise an issue on this project's GitHub page. For everything else:
