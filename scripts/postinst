@@ -4,35 +4,37 @@
 
 if [ "$SYNOPKG_PKG_STATUS" = "INSTALL" ]; then
 	HOMEBRIDGE_TZ=$(synodate --getNameInTZDB)
-	HOMEBRIDGE_PUID=$(id $SYNOPKG_USERNAME -u)
-	HOMEBRIDGE_PGID=$(id $SYNOPKG_USERNAME -g)
+	HOMEBRIDGE_PUID=$(id "$SYNOPKG_USERNAME" -u)
+	HOMEBRIDGE_PGID=$(id "$SYNOPKG_USERNAME" -g)
 	HOMEBRIDGE_VOL="$homebridge_pkgwizard_share_name"
 
 	echo "HOMEBRIDGE_TZ=$HOMEBRIDGE_TZ
 	HOMEBRIDGE_PUID=$HOMEBRIDGE_PUID
 	HOMEBRIDGE_PGID=$HOMEBRIDGE_PGID
-	HOMEBRIDGE_VOL=$HOMEBRIDGE_VOL" > $SYNOPKG_PKGDEST/.env
+	HOMEBRIDGE_VOL=$HOMEBRIDGE_VOL" > "$SYNOPKG_PKGDEST/.env"
 
 	# Install homebridge-config-ui-x if required
 	if [ "$homebridge_pkgwizard_install_ui_true" = "true" ]; then
-		echo "HOMEBRIDGE_CONFIG_UI=1" >> $SYNOPKG_PKGDEST/.env
-		[ -f $SYNOPKG_PKGDEST/ui/config.disabled ] && $SYNOPKG_PKGDEST/ui/config.disabled $SYNOPKG_PKGDEST/ui/config
+		echo "HOMEBRIDGE_CONFIG_UI=1" >> "$SYNOPKG_PKGDEST/.env"
+		[ -f "$SYNOPKG_PKGDEST/ui/config.disabled" ] && "$SYNOPKG_PKGDEST/ui/config.disabled" "$SYNOPKG_PKGDEST/ui/config"
 	else
-		echo "HOMEBRIDGE_CONFIG_UI=0" >> $SYNOPKG_PKGDEST/.env
-		[ -f $SYNOPKG_PKGDEST/ui/config ] && mv $SYNOPKG_PKGDEST/ui/config $SYNOPKG_PKGDEST/ui/config.disabled
+		echo "HOMEBRIDGE_CONFIG_UI=0" >> "$SYNOPKG_PKGDEST/.env"
+		[ -f "$SYNOPKG_PKGDEST/ui/config" ] && mv "$SYNOPKG_PKGDEST/ui/config" "$SYNOPKG_PKGDEST/ui/config.disabled"
 	fi
 
-	# Enable safe mode if requested
-	if [ "$homebridge_pkgwizard_no_avahi_true" = "true" ]; then
-		sed -i 's/homebridge:latest/homebridge:no-avahi/g' $SYNOPKG_PKGDEST/docker-compose.yml
+	# Set requested image type
+	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=no-avahi" >> "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=debian" >> "$SYNOPKG_PKGDEST/.env"
 	else
-		sed -i 's/homebridge:no-avahi/homebridge:latest/g' $SYNOPKG_PKGDEST/docker-compose.yml
+		echo "HOMEBRIDGE_DOCKER_TAG=latest" >> "$SYNOPKG_PKGDEST/.env"
 	fi
 
-	chmod 755 $homebridge_pkgwizard_share_name
+	chmod 755 "$homebridge_pkgwizard_share_name"
 fi
 
-cd $SYNOPKG_PKGDEST
-docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml pull
+cd "$SYNOPKG_PKGDEST"
+docker-compose -f "$SYNOPKG_PKGDEST/docker-compose.yml" pull
 
 exit 0
