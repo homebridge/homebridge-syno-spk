@@ -4,13 +4,25 @@
 ### Actions after package upgraded.
 ### ex. restore user settings.
 
-cp $SYNOPKG_TEMP_UPGRADE_FOLDER/.env $SYNOPKG_PKGDEST/.env
+cp "$SYNOPKG_TEMP_UPGRADE_FOLDER/.env" "$SYNOPKG_PKGDEST/.env"
 
-# Enable safe mode if requested
-if [ "$homebridge_pkgwizard_no_avahi_true" = "true" ]; then
-	sed -i 's/homebridge:latest/homebridge:no-avahi/g' $SYNOPKG_PKGDEST/docker-compose.yml
+# Set requested image type
+if grep -q "HOMEBRIDGE_DOCKER_TAG" "$SYNOPKG_PKGDEST/.env"; then
+	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
+		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=no-avahi/' "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
+		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=debian/' "$SYNOPKG_PKGDEST/.env"
+	else
+		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=latest/' "$SYNOPKG_PKGDEST/.env"
+	fi
 else
-	sed -i 's/homebridge:no-avahi/homebridge:latest/g' $SYNOPKG_PKGDEST/docker-compose.yml
+	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=no-avahi" >> "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=debian" >> "$SYNOPKG_PKGDEST/.env"
+	else
+		echo "HOMEBRIDGE_DOCKER_TAG=latest" >> "$SYNOPKG_PKGDEST/.env"
+	fi
 fi
 
 exit 0
