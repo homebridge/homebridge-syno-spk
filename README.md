@@ -40,7 +40,7 @@ Homebridge can be updated from inside the Config UI. From time to time you may n
 
 Some plugins may require additional packages to be installed which can be done by editing the `startup.sh` script.
 
-The `startup.sh` file will be created in the volume you choose during the setup wizard. The Homebridge UI does not provide a way to edit this file so you'll need to do this using DSM or your own computer's editor.
+The `startup.sh` file will be created in the volume you choose during the setup wizard. You can edit this file from the UI by going to the Docker menu -> Startup Script.
 
 Example `startup.sh` file to install `ffmpeg`:
 
