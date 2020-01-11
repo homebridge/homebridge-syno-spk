@@ -79,3 +79,11 @@ Pull requests are welcome.
 ## Setting up for development
 
 See the [Synology DSM 6.0 Developer Guide](https://developer.synology.com/developer-guide/index.html).
+
+## License
+
+Copyright (C) 2019 oznu
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the [GNU General Public License](./LICENSE) for more details.
