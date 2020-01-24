@@ -34,7 +34,7 @@ The Homebridge Config UI app starts on port `8581`. The default username is **ad
 
 ## Updating Homebridge
 
-Homebridge can be updated from inside the Config UI. From time to time you may need to upgrade the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) image which can be done by stopping and starting the package in the Synology DSM Package Center.
+Homebridge can be updated from inside the Config UI. From time to time you may need to upgrade the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) Docker container image which can be done by stopping and starting the package in the Synology DSM Package Center.
 
 ## Adding Additional Packages
 
