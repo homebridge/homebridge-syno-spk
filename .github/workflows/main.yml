@@ -23,8 +23,8 @@ jobs:
     - name: Get Release Asset File Name
       id: get_release_asset_name
       run: |
-        export ASSET_NAME=$(echo basename github-release/*.spk)
-        echo ASSET_NAME
+        export ASSET_NAME=$(basename github-release/*.spk)
+        echo $ASSET_NAME
         echo ::set-output name=ASSET_NAME::${ASSET_NAME}
 
     - name: Upload Release Asset
