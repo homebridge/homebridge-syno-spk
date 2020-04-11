@@ -29,8 +29,8 @@ EOF
 gpg --batch --gen-key foo
 
 # copy gpg keys into chroot env
-mkdir -p /toolkit/build_env/ds.x64-6.0/home/travis/
-cp -R /home/travis/.gnupg /toolkit/build_env/ds.x64-6.0/root/.gnupg
-cp -R /home/travis/.gnupg /toolkit/build_env/ds.x64-6.0/home/travis/.gnupg
-chown -R root:root /toolkit/build_env/ds.x64-6.0/root/.gnupg /toolkit/build_env/ds.x64-6.0/home/travis/.gnupg
-chmod -R 600 /toolkit/build_env/ds.x64-6.0/root/.gnupg /toolkit/build_env/ds.x64-6.0/home/travis/.gnupg
+mkdir -p /toolkit/build_env/ds.x64-6.0/home/$USER/
+cp -R /home/$USER/.gnupg /toolkit/build_env/ds.x64-6.0/root/.gnupg
+cp -R /home/$USER/.gnupg /toolkit/build_env/ds.x64-6.0/home/$USER/.gnupg
+chown -R root:root /toolkit/build_env/ds.x64-6.0/root/.gnupg /toolkit/build_env/ds.x64-6.0/home/$USER/.gnupg
+chmod -R 600 /toolkit/build_env/ds.x64-6.0/root/.gnupg /toolkit/build_env/ds.x64-6.0/home/$USER/.gnupg

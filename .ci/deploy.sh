@@ -2,8 +2,8 @@
 
 set -x
 
-PKG_VERSION=$(cat $TRAVIS_BUILD_DIR/INFO.sh | grep version | awk -F '"' '{ print $2 }')
+PKG_VERSION=$(cat $GITHUB_WORKSPACE/INFO.sh | grep version | awk -F '"' '{ print $2 }')
 
-mkdir $TRAVIS_BUILD_DIR/github-release
+mkdir $GITHUB_WORKSPACE/github-release
 
-cp /toolkit/result_spk/HomebridgeDocker-${PKG_VERSION}/HomebridgeDocker-x86_64-${PKG_VERSION}.spk $TRAVIS_BUILD_DIR/github-release/
+cp /toolkit/result_spk/HomebridgeDocker-${PKG_VERSION}/HomebridgeDocker-x86_64-${PKG_VERSION}.spk $GITHUB_WORKSPACE/github-release/
