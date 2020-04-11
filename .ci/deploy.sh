@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+set -e
 
 PKG_VERSION=$(cat $GITHUB_WORKSPACE/INFO.sh | grep version | awk -F '"' '{ print $2 }')
 

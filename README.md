@@ -81,7 +81,7 @@ Pull requests are welcome.
 
 ## Setting up for development
 
-See the [Synology DSM 6.0 Developer Guide](https://developer.synology.com/developer-guide/index.html).
+See the [Synology DSM 6.0 Developer Guide](https://help.synology.com/developer-guide/).
 
 ## License
 
