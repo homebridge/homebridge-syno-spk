@@ -4,16 +4,20 @@
     "items": [{
         "type": "singleselect",
         "subitems": [{
-            "key": "homebridge_pkgwizard_image_type_latest",
-            "desc": "Default Image (Alpine Linux)",
-            "defaultValue": true
-        }, {
             "key": "homebridge_pkgwizard_image_type_no_avahi",
-            "desc": "No Avahi Image (Alpine Linux). Select this if you're having trouble discovering Homebridge in iOS.",
+            "desc": "Alpine Linux (without Avahi)",
+            "defaultValue": true
+        },{
+            "key": "homebridge_pkgwizard_image_type_latest",
+            "desc": "Alpine Linux",
             "defaultValue": false
-        }, {
+        },{
+            "key": "homebridge_pkgwizard_image_type_debian_no_avahi",
+            "desc": "Debian Stretch (without Avahi)",
+            "defaultValue": false
+        },{
             "key": "homebridge_pkgwizard_image_type_debian",
-            "desc": "Debian Based Image (Debian Stretch)",
+            "desc": "Debian Stretch",
             "defaultValue": false
         }]
     }]

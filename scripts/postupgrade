@@ -12,6 +12,8 @@ if grep -q "HOMEBRIDGE_DOCKER_TAG" "$SYNOPKG_PKGDEST/.env"; then
 		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=no-avahi/' "$SYNOPKG_PKGDEST/.env"
 	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
 		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=debian/' "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_debian_no_avahi" = "true" ]; then
+		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=debian-no-avahi/' "$SYNOPKG_PKGDEST/.env"
 	else
 		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=latest/' "$SYNOPKG_PKGDEST/.env"
 	fi
@@ -20,6 +22,8 @@ else
 		echo "HOMEBRIDGE_DOCKER_TAG=no-avahi" >> "$SYNOPKG_PKGDEST/.env"
 	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
 		echo "HOMEBRIDGE_DOCKER_TAG=debian" >> "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_debian_no_avahi" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=debian-no-avahi" >> "$SYNOPKG_PKGDEST/.env"
 	else
 		echo "HOMEBRIDGE_DOCKER_TAG=latest" >> "$SYNOPKG_PKGDEST/.env"
 	fi

@@ -27,6 +27,8 @@ if [ "$SYNOPKG_PKG_STATUS" = "INSTALL" ]; then
 		echo "HOMEBRIDGE_DOCKER_TAG=no-avahi" >> "$SYNOPKG_PKGDEST/.env"
 	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
 		echo "HOMEBRIDGE_DOCKER_TAG=debian" >> "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_debian_no_avahi" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=debian-no-avahi" >> "$SYNOPKG_PKGDEST/.env"
 	else
 		echo "HOMEBRIDGE_DOCKER_TAG=latest" >> "$SYNOPKG_PKGDEST/.env"
 	fi

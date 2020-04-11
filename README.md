@@ -1,6 +1,9 @@
-[![Travis](https://img.shields.io/travis/oznu/homebridge-syno-spk.svg)](https://travis-ci.org/oznu/homebridge-syno-spk) [![GitHub release](https://img.shields.io/github/release/oznu/homebridge-syno-spk.svg)](https://github.com/oznu/homebridge-syno-spk/releases/latest)
+<p align="center">
+<img width="400px" src="https://user-images.githubusercontent.com/3979615/79035227-bdd5be00-7bff-11ea-900f-2fef01bba4ba.png">
+</p>
 
-![oznu/homebridge-homekit-logo](PACKAGE_ICON.PNG)
+[![Travis](https://img.shields.io/travis/oznu/homebridge-syno-spk.svg)](https://travis-ci.org/oznu/homebridge-syno-spk)
+[![GitHub release](https://img.shields.io/github/release/oznu/homebridge-syno-spk.svg)](https://github.com/oznu/homebridge-syno-spk/releases/latest)
 
 # Synology Package for Homebridge Docker
 
