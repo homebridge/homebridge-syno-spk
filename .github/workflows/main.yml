@@ -10,10 +10,10 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup Environment
-      run: sudo ./.ci/setup.sh
+      run: sudo -E ./.ci/setup.sh
 
     - name: Build Package
-      run: sudo ./.ci/build.sh
+      run: sudo -E ./.ci/build.sh
 
     - name: Deploy
-      run: sudo ./.ci/deploy.sh
+      run: sudo -E ./.ci/deploy.sh
