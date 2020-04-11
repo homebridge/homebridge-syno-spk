@@ -1,7 +1,9 @@
 name: "Build"
 
-on:
-  [push]
+on: 
+  release:
+    types:
+      - created
 
 jobs:
   build:
@@ -17,3 +19,21 @@ jobs:
 
     - name: Deploy
       run: sudo -E ./.ci/deploy.sh
+
+    - name: Get Release Asset File Name
+      id: get_release_asset_name
+      run: |
+        export ASSET_NAME=$(echo basename github-release/*.spk)
+        echo ASSET_NAME
+        echo ::set-output name=ASSET_NAME::${ASSET_NAME}
+
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: github-release/${{ steps.get_release_asset_name.outputs.ASSET_NAME }}
+        asset_name: ${{ steps.get_release_asset_name.outputs.ASSET_NAME }}
+        asset_content_type: application/gzip
