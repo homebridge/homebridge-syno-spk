@@ -1,8 +1,7 @@
 name: "Build"
 
 on:
-  release:
-    types: [created]
+  [push]
 
 jobs:
   build:
@@ -17,4 +16,3 @@ jobs:
 
     - name: Deploy
       run: sudo ./.ci/deploy.sh
-      
