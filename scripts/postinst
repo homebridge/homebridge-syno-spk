@@ -25,10 +25,10 @@ if [ "$SYNOPKG_PKG_STATUS" = "INSTALL" ]; then
 	# Set requested image type
 	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
 		echo "HOMEBRIDGE_DOCKER_TAG=no-avahi" >> "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=debian" >> "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_debian_no_avahi" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=debian-no-avahi" >> "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_ubuntu" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=ubuntu" >> "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_ubuntu_no_avahi" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=ubuntu-no-avahi" >> "$SYNOPKG_PKGDEST/.env"
 	else
 		echo "HOMEBRIDGE_DOCKER_TAG=latest" >> "$SYNOPKG_PKGDEST/.env"
 	fi

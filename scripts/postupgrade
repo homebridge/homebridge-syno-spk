@@ -10,20 +10,20 @@ cp "$SYNOPKG_TEMP_UPGRADE_FOLDER/.env" "$SYNOPKG_PKGDEST/.env"
 if grep -q "HOMEBRIDGE_DOCKER_TAG" "$SYNOPKG_PKGDEST/.env"; then
 	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
 		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=no-avahi/' "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
-		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=debian/' "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_debian_no_avahi" = "true" ]; then
-		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=debian-no-avahi/' "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_ubuntu" = "true" ]; then
+		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=ubuntu/' "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_ubuntu_no_avahi" = "true" ]; then
+		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=ubuntu-no-avahi/' "$SYNOPKG_PKGDEST/.env"
 	else
 		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=latest/' "$SYNOPKG_PKGDEST/.env"
 	fi
 else
 	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
 		echo "HOMEBRIDGE_DOCKER_TAG=no-avahi" >> "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_debian" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=debian" >> "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_debian_no_avahi" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=debian-no-avahi" >> "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_ubuntu" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=ubuntu" >> "$SYNOPKG_PKGDEST/.env"
+	elif [ "$homebridge_pkgwizard_image_type_ubuntu_no_avahi" = "true" ]; then
+		echo "HOMEBRIDGE_DOCKER_TAG=ubuntu-no-avahi" >> "$SYNOPKG_PKGDEST/.env"
 	else
 		echo "HOMEBRIDGE_DOCKER_TAG=latest" >> "$SYNOPKG_PKGDEST/.env"
 	fi

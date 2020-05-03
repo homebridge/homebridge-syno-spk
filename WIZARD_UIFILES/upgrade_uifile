@@ -4,20 +4,16 @@
     "items": [{
         "type": "singleselect",
         "subitems": [{
-            "key": "homebridge_pkgwizard_image_type_no_avahi",
-            "desc": "Alpine Linux (without Avahi)",
+            "key": "homebridge_pkgwizard_image_type_latest",
+            "desc": "Alpine Linux (Recommended)",
             "defaultValue": true
         },{
-            "key": "homebridge_pkgwizard_image_type_latest",
-            "desc": "Alpine Linux",
+            "key": "homebridge_pkgwizard_image_type_ubuntu_no_avahi",
+            "desc": "Ubuntu 18.04 (without Avahi)",
             "defaultValue": false
         },{
-            "key": "homebridge_pkgwizard_image_type_debian_no_avahi",
-            "desc": "Debian Stretch (without Avahi)",
-            "defaultValue": false
-        },{
-            "key": "homebridge_pkgwizard_image_type_debian",
-            "desc": "Debian Stretch",
+            "key": "homebridge_pkgwizard_image_type_ubuntu",
+            "desc": "Ubuntu 18.04",
             "defaultValue": false
         }]
     }]
