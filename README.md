@@ -31,7 +31,7 @@ This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/hom
 
 **Step 6:** Use the Homebridge app icon in the main menu to access the Homebridge UI where you can manage your setup.
 
-![oznu/homebridge-config-ui-x](https://raw.githubusercontent.com/oznu/homebridge-config-ui-x/master/screenshots/homebridge-config-ui-x-status.png)
+![oznu/homebridge-syno-spk-install](https://user-images.githubusercontent.com/3979615/80908354-912a4780-8d62-11ea-9101-80d117900fee.gif)
 
 The Homebridge Config UI app starts on port `8581`. The default username is **admin** with password **admin**.
 
