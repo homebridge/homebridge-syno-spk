@@ -24,7 +24,7 @@
         "type": "singleselect",
         "subitems": [{
             "key": "homebridge_pkgwizard_image_type_latest",
-            "desc": "Alpine Linux (Recommended)",
+            "desc": "Alpine Linux (without Avahi) - Recommended",
             "defaultValue": true
         },{
             "key": "homebridge_pkgwizard_image_type_ubuntu_no_avahi",
