@@ -20,28 +20,37 @@
 }, {
     "step_title": "Select Image Type",
     "invalid_next_disable": true,
-    "items": [{
-        "type": "singleselect",
-        "subitems": [{
-            "key": "homebridge_pkgwizard_image_type_latest",
-            "desc": "Alpine Linux (without Avahi) - Recommended",
-            "defaultValue": true
-        },{
-            "key": "homebridge_pkgwizard_image_type_ubuntu_no_avahi",
-            "desc": "Ubuntu 18.04 (without Avahi)",
-            "defaultValue": false
-        },{
-            "key": "homebridge_pkgwizard_image_type_ubuntu",
-            "desc": "Ubuntu 18.04 (with Avahi)",
-            "defaultValue": false
-        }]
-    }]
+    "items": [
+        {
+            "desc": "Select what image variant you want to use. See the <a target='_blank' href='https://github.com/oznu/docker-homebridge/wiki'>Homebridge Docker Wiki</a> for more information."
+        },
+        {
+            "type": "singleselect",
+            "subitems": [
+                {
+                    "key": "homebridge_pkgwizard_image_type_latest",
+                    "desc": "Alpine Linux (without Avahi) - Recommended",
+                    "defaultValue": true
+                },
+                {
+                    "key": "homebridge_pkgwizard_image_type_ubuntu_no_avahi",
+                    "desc": "Ubuntu 18.04 (without Avahi)",
+                    "defaultValue": false
+                },
+                {
+                    "key": "homebridge_pkgwizard_image_type_ubuntu",
+                    "desc": "Ubuntu 18.04 (with Avahi)",
+                    "defaultValue": false
+                }
+            ]
+        }
+    ]
 }, {
     "step_title": "Homebridge Config UI X",
     "invalid_next_disable": true,
     "items": [{
         "type": "singleselect",
-        "desc": "Do you want to install Homebridge Config UI X? This will allow you to monitor, backup and configure Homebridge from a browser. The default user is \"admin\" with password \"admin\".",
+        "desc": "Do you want to install <a target='_blank' href='https://github.com/oznu/homebridge-config-ui-x'>Homebridge Config UI X</a>? This will allow you to monitor, backup and configure Homebridge from a browser.",
         "subitems": [{
             "key": "homebridge_pkgwizard_install_ui_true",
             "desc": "Yes",
@@ -51,5 +60,9 @@
             "desc": "No",
             "defaultValue": false
         }]
+    },{
+      "desc": "If enabled, you will be able to access the Homebridge UI via <strong>http://IP_ADDRESS:8581</strong>."
+    },{
+      "desc": "<strong style='color:red'>The default user is \"admin\" with password \"admin\".</strong>"
     }]
 }]

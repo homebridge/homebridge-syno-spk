@@ -1,20 +1,29 @@
 [{
     "step_title": "Select Image Type",
     "invalid_next_disable": true,
-    "items": [{
-        "type": "singleselect",
-        "subitems": [{
-            "key": "homebridge_pkgwizard_image_type_latest",
-            "desc": "Alpine Linux (without Avahi) - Recommended",
-            "defaultValue": true
-        },{
-            "key": "homebridge_pkgwizard_image_type_ubuntu_no_avahi",
-            "desc": "Ubuntu 18.04 (without Avahi)",
-            "defaultValue": false
-        },{
-            "key": "homebridge_pkgwizard_image_type_ubuntu",
-            "desc": "Ubuntu 18.04 (with Avahi)",
-            "defaultValue": false
-        }]
-    }]
+    "items": [
+        {
+            "desc": "Select what image variant you want to use. See the <a target='_blank' href='https://github.com/oznu/docker-homebridge/wiki'>Homebridge Docker Wiki</a> for more information."
+        },
+        {
+            "type": "singleselect",
+            "subitems": [
+                {
+                    "key": "homebridge_pkgwizard_image_type_latest",
+                    "desc": "Alpine Linux (without Avahi) - Recommended",
+                    "defaultValue": true
+                },
+                {
+                    "key": "homebridge_pkgwizard_image_type_ubuntu_no_avahi",
+                    "desc": "Ubuntu 18.04 (without Avahi)",
+                    "defaultValue": false
+                },
+                {
+                    "key": "homebridge_pkgwizard_image_type_ubuntu",
+                    "desc": "Ubuntu 18.04 (with Avahi)",
+                    "defaultValue": false
+                }
+            ]
+        }
+    ]
 }]
