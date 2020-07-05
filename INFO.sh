@@ -3,7 +3,7 @@
 source /pkgscripts/include/pkg_util.sh
 
 package="HomebridgeDocker"
-version="1.2.0"
+version="1.3.0"
 maintainer="oznu"
 displayname="Homebridge"
 description="HomeKit support for the impatient using Docker on Synology DSM."
