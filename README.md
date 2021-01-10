@@ -69,7 +69,7 @@ apk add --no-cache libpcap-dev
 If you have an issue with the installation of Homebridge using this package please raise an issue on this project's GitHub page. For everything else:
 
 * Docker/Platform Issues: [oznu/docker-homebridge](https://github.com/oznu/docker-homebridge)
-* Homebridge Conifg UI Issues: [oznu/homebridge-config-ui-x](https://github.com/oznu/homebridge-config-ui-x)
+* Homebridge Config UI Issues: [oznu/homebridge-config-ui-x](https://github.com/oznu/homebridge-config-ui-x)
 * General Homebridge Issues: [nfarina/homebridge](https://github.com/nfarina/homebridge)
 * For problems with individual plugins please raise issues on the relevant GitHub project page.
 
