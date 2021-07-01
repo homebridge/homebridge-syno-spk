@@ -7,7 +7,9 @@
 
 # Synology Package for Homebridge Docker
 
-This third-party Synology Package simplifies the process of running [Homebridge](https://github.com/nfarina/homebridge) on devices that support Docker and are running DSM 6.1.3 or later.
+This third-party Synology Package simplifies the process of running [Homebridge](https://github.com/nfarina/homebridge) on devices that support Docker and are running DSM 6.x.x.
+
+**DSM 7.x.x is not supported**
 
 This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) image using the recommended settings:
 
