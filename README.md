@@ -31,13 +31,7 @@ The Homebridge Config UI app starts on port `8581`. The default username is **ad
 
 **To use this package on DSM 6, you must have the Synology Docker Package installed.**
 
-This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) image using the recommended settings:
-
-* `--net=host` is set automatically.
-* `-e TZ` variable is set based on your current timezone of your Synology NAS.
-* `-e PUID` variable is set to the same UID as the user who installs the package in DSM.
-* `-e PGID` variable is set to the same GID as the user who installs the package in DSM.
-* `-v /homebridge` is setup automatically using the directory chosen by you during installation.
+This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) image using the recommended settings.
 
 **Step 1:** Download the `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/tag/1.3.0
 
@@ -50,8 +44,6 @@ This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/hom
 **Step 5:** Complete the wizard. The first time you install may take some time as the latest [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) image is downloaded from Docker Hub.
 
 **Step 6:** Use the Homebridge app icon in the main menu to access the Homebridge UI where you can manage your setup.
-
-![oznu/homebridge-syno-spk-install](https://user-images.githubusercontent.com/3979615/80908354-912a4780-8d62-11ea-9101-80d117900fee.gif)
 
 The Homebridge Config UI app starts on port `8581`. The default username is **admin** with password **admin**.
 
