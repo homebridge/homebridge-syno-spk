@@ -19,10 +19,10 @@ jobs:
 
     - name: Setup Toolchain
       run: |
-        sudo ./.ci/setup-toolchain.sh
+        sudo -E ./.ci/setup-toolchain.sh
 
     - name: Build Package
       run: |
-        sudo ./.ci/build-package.sh
+        sudo -E ./.ci/build-package.sh
       env:
         SPK_PACKAGE_VERSION: ${{ steps.get_version.outputs.VERSION }}
