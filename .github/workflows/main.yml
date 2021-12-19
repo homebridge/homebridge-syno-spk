@@ -1,8 +1,8 @@
 name: CI
 
 on:
-  push:
-    # tags:
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -10,6 +10,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Get the upload URL for a release
+      id: get_release
+      uses: bruceadams/get-release@v1.2.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Get the version (git tag)
       id: get_version
@@ -25,4 +31,14 @@ jobs:
       run: |
         sudo -E ./.ci/build-package.sh
       env:
-        SPK_PACKAGE_VERSION: "4.0.0"
+        SPK_PACKAGE_VERSION: ${{ steps.get_release.outputs.tag_name }}
+
+    - name: Upload SPK To Release
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get_release.outputs.upload_url }}
+        asset_path: ./homebridge-braswell-${{ steps.get_release.outputs.tag_name }}.spk
+        asset_name: homebridge-braswell-${{ steps.get_release.outputs.tag_name }}.spk
+        asset_content_type: application/octet-stream
