@@ -2,8 +2,9 @@
 <img width="400px" src="https://user-images.githubusercontent.com/3979615/79035227-bdd5be00-7bff-11ea-900f-2fef01bba4ba.png">
 </p>
 
-[![Build](https://github.com/oznu/homebridge-syno-spk/workflows/Build/badge.svg)](https://github.com/oznu/homebridge-syno-spk/actions)
 [![GitHub release](https://img.shields.io/github/release/oznu/homebridge-syno-spk.svg)](https://github.com/oznu/homebridge-syno-spk/releases/latest)
+[![Build](https://github.com/oznu/homebridge-syno-spk/workflows/Build/badge.svg)](https://github.com/oznu/homebridge-syno-spk/actions)
+[![Donate](https://badgen.net/badge/donate/paypal/yellow)](https://paypal.me/oznu)
 
 # Homebridge Package for Synology DSM
 
