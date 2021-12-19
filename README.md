@@ -15,7 +15,7 @@ This third-party Synology Package simplifies the process of running [Homebridge]
 
 This package will deploy Homebridge and the Homebridge UI natively on your Synology NAS. It will create a new shared named `homebridge` to store the Homebridge configuration and user data.
 
-**Step 1:** Download the `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/tag/latest
+**Step 1:** Download the `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/latest
 
 **Step 2:** Open Package Center in DSM and select the `Manual Install` option.
 
