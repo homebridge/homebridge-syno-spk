@@ -1,0 +1,11 @@
+[Unit]
+Description=Homebridge
+After=network-online.target
+
+[Service]
+Type=simple
+Slice=Homebridge.slice
+ExecStart=/var/packages/homebridge/target/app/start.sh
+Restart=on-failure
+RestartSec=3
+KillMode=process

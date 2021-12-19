@@ -1,57 +1,37 @@
 #!/bin/bash
+# Copyright (c) 2000-2021 Synology Inc. All rights reserved.
 
-### Use PKG_DIR as working directory.
-PKG_DIR=/tmp/_test_spk
-rm -rf $PKG_DIR
-mkdir -p $PKG_DIR
+# set include projects to install into this package
+INST_DIR="/tmp/_homebridge"      # temp folder for dsm files
+PKG_DIR="/tmp/_homebridge_pkg"   # temp folder for package files
+PKG_DEST="/image/packages"
 
-### get spk packing functions
-source /pkgscripts/include/pkg_util.sh
+# prepare install and package dir
+for dir in $INST_DIR $PKG_DIR; do
+        rm -rf "$dir"
+done
+for dir in $INST_DIR $PKG_DIR $PKG_DEST; do
+        mkdir -p "$dir" # use default mask
+done
 
-create_package_tgz() {
-	local package_tgz_dir=/tmp/_package_tgz
+[ -d $INST_DIR/ui ] || install -d $INST_DIR/ui
+cp -a ui/* $INST_DIR/ui
 
-	### clear destination directory
-	rm -rf $package_tgz_dir && mkdir -p $package_tgz_dir
+[ -d $INST_DIR/app ] || install -d $INST_DIR/app
+cp -a app/* $INST_DIR/app
 
-        ### copy local package source
-        cp -Rav package/* $package_tgz_dir/
+[ -d $PKG_DIR ] || install -d $PKG_DIR
+[ -d $PKG_DIR/scripts ] || install -d $PKG_DIR/scripts
+cp -a conf $PKG_DIR
+cp -a scripts/* $PKG_DIR/scripts
+chmod 755 $PKG_DIR/scripts/*
 
-	### create package.tgz $1: source_dir $2: dest_dir
-	pkg_make_package $package_tgz_dir "${PKG_DIR}"
-}
+cp -av PACKAGE_ICON*.PNG $PKG_DIR
 
-create_spk(){
-	local scripts_dir=$PKG_DIR/scripts
+./INFO.sh > INFO
 
-	### Copy package center scripts to PKG_DIR
-	mkdir -p $scripts_dir
-	cp -av scripts/* $scripts_dir
+install -c -m 644 INFO $PKG_DIR
 
-	### Copy package icon
-	cp -av PACKAGE_ICON*.PNG $PKG_DIR
-
-	### Generate INFO file
-	./INFO.sh > INFO
-	cp INFO $PKG_DIR/INFO
-
-	### Copy WIZARD_UIFILES
-	cp -R WIZARD_UIFILES $PKG_DIR/WIZARD_UIFILES
-
-        ### Copy Conf
-        # cp -R conf $PKG_DIR/conf
-
-	### Create the final spk.
-	# pkg_make_spk <source path> <dest path> <spk file name>
-	# Please put the result spk into /image/packages
-	# spk name functions: pkg_get_spk_name pkg_get_spk_unified_name pkg_get_spk_family_name
-	mkdir -p /image/packages
-	pkg_make_spk ${PKG_DIR} "/image/packages" $(pkg_get_spk_family_name)
-}
-
-main() {
-	create_package_tgz
-	create_spk
-}
-
-main "$@"
+. "/pkgscripts-ng/include/pkg_util.sh"
+pkg_make_package $INST_DIR $PKG_DIR
+pkg_make_spk $PKG_DIR $PKG_DEST

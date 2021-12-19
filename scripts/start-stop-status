@@ -1,39 +1,19 @@
-#!/bin/sh
-
-cd $SYNOPKG_PKGDEST
-
-case $1 in
-	start)
-		### Start this package.
-		docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml pull
-		docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml up -d
-		if [ "$?" -eq "0" ]; then
-			synodsmnotify @administrators "Homebridge Docker" "Homebridge has started."
-		else
-			synodsmnotify @administrators "Homebridge Docker" "Homebridge failed to start."
-		fi
-
-		### Remove old, untagged versions of oznu/homebridge
-		docker rmi $(docker images -q -f "reference=oznu/homebridge" -f "dangling=true") || echo "No older images to remove"
-		exit 0
-	;;
-	stop)
-		### Stop this package.
-		docker-compose -f $SYNOPKG_PKGDEST/docker-compose.yml stop
-		exit 0
-	;;
-	status)
-		HOMEBRIDGE_STATUS=$(docker inspect homebridge | jq -r '.[].State.Status')
-		if [ "$HOMEBRIDGE_STATUS" = "running" ]; then
-			exit 0
-		else
-			exit 1
-		fi
-	;;
-	killall)
+#!/bin/bash
+case "$1" in
+    start)
+	synosystemctl start pkguser-homebridge
         ;;
-	log)
-		exit 0
-	;;
+    stop)
+	synosystemctl stop pkguser-homebridge
+        ;;
+    status)
+        ;;
+    log)
+        echo ""
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|status}" >&2
+        exit 1
+        ;;
 esac
-
+exit 0

@@ -1,0 +1,11 @@
+{
+  "systemd-user-unit": {},
+  "data-share": {
+    "shares": [{
+      "name": "homebridge",
+      "permission": {
+        "rw": ["homebridge"]
+      }
+    }]
+  }
+}

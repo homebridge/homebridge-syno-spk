@@ -1,32 +1,3 @@
 #!/bin/sh
 
-### This script will be executed ONLY at package upgraded.
-### Actions after package upgraded.
-### ex. restore user settings.
-
-cp "$SYNOPKG_TEMP_UPGRADE_FOLDER/.env" "$SYNOPKG_PKGDEST/.env"
-
-# Set requested image type
-if grep -q "HOMEBRIDGE_DOCKER_TAG" "$SYNOPKG_PKGDEST/.env"; then
-	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
-		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=no-avahi/' "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_ubuntu" = "true" ]; then
-		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=ubuntu/' "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_ubuntu_no_avahi" = "true" ]; then
-		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=ubuntu-no-avahi/' "$SYNOPKG_PKGDEST/.env"
-	else
-		sed -i 's/HOMEBRIDGE_DOCKER_TAG=.*/HOMEBRIDGE_DOCKER_TAG=latest/' "$SYNOPKG_PKGDEST/.env"
-	fi
-else
-	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=no-avahi" >> "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_ubuntu" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=ubuntu" >> "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_ubuntu_no_avahi" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=ubuntu-no-avahi" >> "$SYNOPKG_PKGDEST/.env"
-	else
-		echo "HOMEBRIDGE_DOCKER_TAG=latest" >> "$SYNOPKG_PKGDEST/.env"
-	fi
-fi
-
 exit 0

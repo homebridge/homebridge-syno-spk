@@ -1,42 +1,5 @@
 #!/bin/sh
 
-### This script will be executed when package installed and upgraded.
-
-if [ "$SYNOPKG_PKG_STATUS" = "INSTALL" ]; then
-	HOMEBRIDGE_TZ=$(synodate --getNameInTZDB)
-	HOMEBRIDGE_PUID=$(id "$SYNOPKG_USERNAME" -u)
-	HOMEBRIDGE_PGID=$(id "$SYNOPKG_USERNAME" -g)
-	HOMEBRIDGE_VOL="$homebridge_pkgwizard_share_name"
-
-	echo "HOMEBRIDGE_TZ=$HOMEBRIDGE_TZ
-	HOMEBRIDGE_PUID=$HOMEBRIDGE_PUID
-	HOMEBRIDGE_PGID=$HOMEBRIDGE_PGID
-	HOMEBRIDGE_VOL=$HOMEBRIDGE_VOL" > "$SYNOPKG_PKGDEST/.env"
-
-	# Install homebridge-config-ui-x if required
-	if [ "$homebridge_pkgwizard_install_ui_true" = "true" ]; then
-		echo "HOMEBRIDGE_CONFIG_UI=1" >> "$SYNOPKG_PKGDEST/.env"
-		[ -f "$SYNOPKG_PKGDEST/ui/config.disabled" ] && "$SYNOPKG_PKGDEST/ui/config.disabled" "$SYNOPKG_PKGDEST/ui/config"
-	else
-		echo "HOMEBRIDGE_CONFIG_UI=0" >> "$SYNOPKG_PKGDEST/.env"
-		[ -f "$SYNOPKG_PKGDEST/ui/config" ] && mv "$SYNOPKG_PKGDEST/ui/config" "$SYNOPKG_PKGDEST/ui/config.disabled"
-	fi
-
-	# Set requested image type
-	if [ "$homebridge_pkgwizard_image_type_no_avahi" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=no-avahi" >> "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_ubuntu" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=ubuntu" >> "$SYNOPKG_PKGDEST/.env"
-	elif [ "$homebridge_pkgwizard_image_type_ubuntu_no_avahi" = "true" ]; then
-		echo "HOMEBRIDGE_DOCKER_TAG=ubuntu-no-avahi" >> "$SYNOPKG_PKGDEST/.env"
-	else
-		echo "HOMEBRIDGE_DOCKER_TAG=latest" >> "$SYNOPKG_PKGDEST/.env"
-	fi
-
-	chmod 755 "$homebridge_pkgwizard_share_name"
-fi
-
-cd "$SYNOPKG_PKGDEST"
-docker-compose -f "$SYNOPKG_PKGDEST/docker-compose.yml" pull
+./$SYNOPKG_PKGDEST/app/install.sh
 
 exit 0

@@ -1,7 +1,3 @@
 #!/bin/sh
 
-### This script will be executed when package uninstalled and upgraded.
-### Actions after package uninstalled.
-### ex. remove garbage files.
-
 exit 0

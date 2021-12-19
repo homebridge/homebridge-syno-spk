@@ -1,2 +1,5 @@
+[BuildDependent]
+python3
+
 [default]
-all="6.0"
+all="7.0"
