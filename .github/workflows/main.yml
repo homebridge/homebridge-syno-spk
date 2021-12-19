@@ -25,4 +25,4 @@ jobs:
       run: |
         sudo -E ./.ci/build-package.sh
       env:
-        SPK_PACKAGE_VERSION: ${{ steps.get_version.outputs.VERSION }}
+        SPK_PACKAGE_VERSION: "4.0.0"

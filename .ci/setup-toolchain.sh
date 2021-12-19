@@ -4,7 +4,7 @@ set -x
 set -e
 
 apt-get update
-apt-get install -y cifs-utils python3 python3-pip
+apt-get install -y cifs-utils python3 python3-pip jq
 
 mkdir -p /toolkit
 cd /toolkit
