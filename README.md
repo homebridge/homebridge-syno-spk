@@ -5,11 +5,31 @@
 [![Build](https://github.com/oznu/homebridge-syno-spk/workflows/Build/badge.svg)](https://github.com/oznu/homebridge-syno-spk/actions)
 [![GitHub release](https://img.shields.io/github/release/oznu/homebridge-syno-spk.svg)](https://github.com/oznu/homebridge-syno-spk/releases/latest)
 
-# Synology Package for Homebridge Docker
+# Homebridge Package for Synology DSM
 
-This third-party Synology Package simplifies the process of running [Homebridge](https://github.com/nfarina/homebridge) on devices that support Docker and are running DSM 6.x.x.
+This third-party Synology Package simplifies the process of running [Homebridge](https://github.com/nfarina/homebridge) on x86_64 Synology NAS devices.
 
-**DSM 7.x.x is not supported**
+## DSM 7
+
+**To use this package on DSM 7, your Synology NAS must have an Intel or AMD x86_64 based CPU.**
+
+This package will deploy Homebridge and the Homebridge UI natively on your Synology NAS. It will create a new shared named `homebridge` to store the Homebridge configuration and user data.
+
+**Step 1:** Download the `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/tag/latest
+
+**Step 2:** Open Package Center in DSM and select the `Manual Install` option.
+
+**Step 3:** Click `Agree` when warned about using a package from an unknown publisher.
+
+**Step 4:** Click `Done` to confirm installation. This may take some time as the latest version of Homebridge is downloaded and installed.
+
+**Step 5:** Use the Homebridge app icon in the main menu to access the Homebridge UI where you can manage your setup.
+
+The Homebridge Config UI app starts on port `8581`. The default username is **admin** with password **admin**.
+
+## DSM 6
+
+**To use this package on DSM 6, you must have the Synology Docker Package installed.**
 
 This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) image using the recommended settings:
 
@@ -19,9 +39,7 @@ This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/hom
 * `-e PGID` variable is set to the same GID as the user who installs the package in DSM.
 * `-v /homebridge` is setup automatically using the directory chosen by you during installation.
 
-## How to install
-
-**Step 1:** Download the latest `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/latest
+**Step 1:** Download the `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/tag/1.3.0
 
 **Step 2:** Open Package Center in DSM and select the `Manual Install` option.
 
@@ -37,34 +55,7 @@ This package will deploy the [oznu/homebridge](https://hub.docker.com/r/oznu/hom
 
 The Homebridge Config UI app starts on port `8581`. The default username is **admin** with password **admin**.
 
-## Updating Homebridge
-
-Homebridge can be updated from inside the Config UI. From time to time you may need to upgrade the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) Docker container image which can be done by stopping and starting the package in the Synology DSM Package Center.
-
-## Adding Additional Packages
-
-Some plugins may require additional packages to be installed which can be done by editing the `startup.sh` script.
-
-The `startup.sh` file will be created in the volume you choose during the setup wizard. You can edit this file from the UI by going to the Docker menu -> Startup Script.
-
-Example `startup.sh` file to install `ffmpeg`:
-
-```shell
-#!/bin/sh
-
-apk add --no-cache ffmpeg ffmpeg-libs
-```
-
-Example `startup.sh` file to install `libpcap-dev`:
-
-
-```shell
-#!/bin/sh
-
-apk add --no-cache libpcap-dev
-```
-
-**To apply the changes made to the `startup.sh` file you need to restart the entire container using the Docker app in DSM.**
+From time to time you may need to upgrade the [oznu/homebridge](https://hub.docker.com/r/oznu/homebridge/) Docker container image which can be done by stopping and starting the package in the Synology DSM Package Center.
 
 ## Issues
 
@@ -75,19 +66,17 @@ If you have an issue with the installation of Homebridge using this package plea
 * General Homebridge Issues: [nfarina/homebridge](https://github.com/nfarina/homebridge)
 * For problems with individual plugins please raise issues on the relevant GitHub project page.
 
-Some users have reported not being able to get Homebridge to work at all on their Synology NAS while Bonjour is activated, see [this issue](https://github.com/oznu/docker-homebridge/issues/35) for more details.
-
 ## Contributing
 
 Pull requests are welcome.
 
 ## Setting up for development
 
-See the [Synology DSM 6.0 Developer Guide](https://help.synology.com/developer-guide/).
+See the [Synology DSM Developer Guide](https://help.synology.com/developer-guide/).
 
 ## License
 
-Copyright (C) 2017-2020 oznu
+Copyright (C) 2017-2022 oznu
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
