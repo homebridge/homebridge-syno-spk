@@ -8,6 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    matrix:
+      include:
+        - SPK_PLATFORM: braswell
+          SPK_ARCH: x86_64
+        - SPK_PLATFORM: rtd1296
+          SPK_ARCH: armv8
+
     steps:
     - uses: actions/checkout@v2
 
@@ -26,11 +33,15 @@ jobs:
     - name: Setup Toolchain
       run: |
         sudo -E ./.ci/setup-toolchain.sh
+      env:
+        SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
 
     - name: Build Package
       run: |
         sudo -E ./.ci/build-package.sh
       env:
+        SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
+        SPK_ARCH: ${{ matrix.SPK_ARCH }}
         SPK_PACKAGE_VERSION: ${{ steps.get_release.outputs.tag_name }}
 
     - name: Upload SPK To Release
@@ -39,6 +50,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: ./homebridge-braswell-${{ steps.get_release.outputs.tag_name }}.spk
-        asset_name: homebridge-braswell-${{ steps.get_release.outputs.tag_name }}.spk
+        asset_path: ./homebridge-${{ matrix.SPK_PLATFORM }}-${{ steps.get_release.outputs.tag_name }}.spk
+        asset_name: homebridge-${{ matrix.SPK_PLATFORM }}-${{ steps.get_release.outputs.tag_name }}.spk
         asset_content_type: application/octet-stream

@@ -9,11 +9,19 @@ cp -R $GITHUB_WORKSPACE /toolkit/source/homebridge-syno-spk
 
 # grap the node.js binary
 cd /toolkit/source/homebridge-syno-spk
+
+case "${SPK_ARCH}" in \
+  x86_64) NODE_ARCH='x64';; \
+  armv8) NODE_ARCH='arm64';; \
+  armv7) NODE_ARCH='armv7l';; \
+  *) echo "unsupported architecture"; exit 1 ;; \
+esac
+
 NODE_LTS="$(curl -s https://nodejs.org/dist/index.json | jq -r 'map(select(.lts))[0].version')"
-wget https://nodejs.org/dist/$NODE_LTS/node-$NODE_LTS-linux-x64.tar.gz -O node-linux-x64.tar.gz
+wget https://nodejs.org/dist/$NODE_LTS/node-$NODE_LTS-linux-${NODE_ARCH}.tar.gz -O node-linux.tar.gz
 
 # build spk
-/toolkit/pkgscripts-ng/PkgCreate.py -p braswell -c homebridge-syno-spk
+/toolkit/pkgscripts-ng/PkgCreate.py -p $SPK_PLATFORM -c homebridge-syno-spk
 
 # copy spk to github workspace
-cp /toolkit/build_env/ds.braswell-7.0/image/packages/homebridge-braswell-$SPK_PACKAGE_VERSION.spk $GITHUB_WORKSPACE/
+cp /toolkit/build_env/ds.$SPK_PLATFORM-7.0/image/packages/homebridge-$SPK_PLATFORM-$SPK_PACKAGE_VERSION.spk $GITHUB_WORKSPACE/
