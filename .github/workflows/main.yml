@@ -6,14 +6,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - SPK_PLATFORM: braswell
+            SPK_ARCH: x86_64
+          - SPK_PLATFORM: rtd1296
+            SPK_ARCH: armv8
 
-    matrix:
-      include:
-        - SPK_PLATFORM: braswell
-          SPK_ARCH: x86_64
-        - SPK_PLATFORM: rtd1296
-          SPK_ARCH: armv8
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
