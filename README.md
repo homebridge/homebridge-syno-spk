@@ -16,7 +16,7 @@ This third-party Synology Package simplifies the process of running [Homebridge]
 
 This package will deploy Homebridge and the Homebridge UI natively on your Synology NAS. It will create a new shared named `homebridge` to store the Homebridge configuration and user data.
 
-**Step 1:** Download the `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/tag/2.2.0
+**Step 1:** Download the `.spk` from here: https://github.com/oznu/homebridge-syno-spk/releases/tag/2.2.1
 
 **Step 2:** Open Package Center in DSM and select the `Manual Install` option.
 
@@ -27,6 +27,11 @@ This package will deploy Homebridge and the Homebridge UI natively on your Synol
 **Step 5:** Use the Homebridge app icon in the main menu to access the Homebridge UI where you can manage your setup.
 
 The Homebridge Config UI app starts on port `8581`. The default username is **admin** with password **admin**.
+
+### Recommended Optional Steps:
+
+* [Enable compiling native modules](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
+* [Install ffmpeg with libfdk_aac](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-ffmpeg-with-libfdk_aac)
 
 ## DSM 6
 

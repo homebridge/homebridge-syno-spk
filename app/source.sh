@@ -7,7 +7,7 @@ echo $SCRIPTPATH
 nodeBin="$SCRIPTPATH/bin"
 npmGlobalDir="$(dirname $(dirname $(dirname $SCRIPTPATH)))/@appdata/homebridge"
 
-export PATH="$SCRIPTPATH/bin:$npmGlobalDir/bin:$PATH"
+export PATH="$SCRIPTPATH/bin:$npmGlobalDir/bin:/opt/bin:/var/packages/ffmpeg/target/bin:$PATH"
 export PYTHON=/usr/bin/python3.8
 
 export npm_config_prefix=$npmGlobalDir
