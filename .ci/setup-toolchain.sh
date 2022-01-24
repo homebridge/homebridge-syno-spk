@@ -12,4 +12,4 @@ git clone https://github.com/SynologyOpenSource/pkgscripts-ng
 cd /toolkit/pkgscripts-ng/
 git checkout DSM7.0
 
-/toolkit/pkgscripts-ng/EnvDeploy -v 7.0 -p braswell
+/toolkit/pkgscripts-ng/EnvDeploy -v 7.0 -p $SPK_PLATFORM
