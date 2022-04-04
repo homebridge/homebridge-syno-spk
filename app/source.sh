@@ -14,4 +14,4 @@ export npm_config_fund=false
 export HOMEBRIDGE_SYNOLOGY_PACKAGE=1
 
 # copy .bashrc to service user home
-cp /var/packages/homebridge/target/app/.bashrc /var/packages/homebridge/home/
+cp /var/packages/homebridge/target/app/bashrc /var/packages/homebridge/home/.bashrc
