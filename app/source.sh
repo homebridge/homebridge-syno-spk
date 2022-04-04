@@ -1,13 +1,9 @@
 #!/bin/sh
 
-SCRIPTPATH="$(dirname $(realpath $0))"
+nodeBin="$(readlink -f /var/packages/homebridge/target)/app/bin"
+npmGlobalDir="$(readlink -f /var/packages/homebridge/var)"
 
-echo $SCRIPTPATH
-
-nodeBin="$SCRIPTPATH/bin"
-npmGlobalDir="$(dirname $(dirname $(dirname $SCRIPTPATH)))/@appdata/homebridge"
-
-export PATH="$SCRIPTPATH/bin:$npmGlobalDir/bin:/opt/bin:/var/packages/ffmpeg/target/bin:$PATH"
+export PATH="$nodeBin:$npmGlobalDir/bin:/opt/bin:/var/packages/ffmpeg/target/bin:$PATH"
 export PYTHON=/usr/bin/python3.8
 
 export npm_config_prefix=$npmGlobalDir
