@@ -12,7 +12,7 @@ This third-party Synology Package simplifies the process of running [Homebridge]
 
 ## DSM 7
 
-**To use this package on DSM 7, your Synology NAS must have an Intel or AMD x86_64 based CPU.**
+**To use this package on DSM 7, your Synology NAS must have an Intel or AMD x86_64 based CPU or an ARM64 / aarch64 CPU.**
 
 This package will deploy Homebridge and the Homebridge UI natively on your Synology NAS. It will create a new shared named `homebridge` to store the Homebridge configuration and user data.
 
