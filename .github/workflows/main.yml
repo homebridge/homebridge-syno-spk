@@ -13,6 +13,10 @@ jobs:
             SPK_ARCH: x86_64
           - SPK_PLATFORM: rtd1296
             SPK_ARCH: armv8
+          - SPK_PLATFORM: armada37xx
+            SPK_ARCH: armv8
+          - SPK_PLATFORM: armada38x
+            SPK_ARCH: armv7
 
     runs-on: ubuntu-latest
 
