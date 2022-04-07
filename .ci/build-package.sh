@@ -10,13 +10,6 @@ cp -R $GITHUB_WORKSPACE /toolkit/source/homebridge-syno-spk
 # grap the node.js binary
 cd /toolkit/source/homebridge-syno-spk
 
-case "${SPK_ARCH}" in \
-  x86_64) NODE_ARCH='x64';; \
-  armv8) NODE_ARCH='arm64';; \
-  armv7) NODE_ARCH='armv7l';; \
-  *) echo "unsupported architecture"; exit 1 ;; \
-esac
-
 NODE_LTS="$(curl -s https://nodejs.org/dist/index.json | jq -r 'map(select(.lts))[0].version')"
 wget https://nodejs.org/dist/$NODE_LTS/node-$NODE_LTS-linux-${NODE_ARCH}.tar.gz -O node-linux.tar.gz
 
