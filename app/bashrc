@@ -1,3 +1,13 @@
 #!/bin/sh
 
-alias sudo='echo "ERROR: sudo / root access is not allowed by the homebridge service account. See https://kb.synology.com/en-id/DSM/tutorial/How_to_login_to_DSM_with_root_permission_via_SSH_Telnet" # '
+GREEN='\033[1;32m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+PS1="\[\033[m\]\[\e[1m\]\u\[\e[1;36m\]\[\033[m\]@\[\e[1;36m\]\h\[\033[m\]:\[\e[0m\]\[\e[1;32m\][\w]> \[\e[0m\]"
+
+printf "${GREEN}Homebridge Terminal for Synology DSM${NC}\n"
+printf "${CYAN}Note: This is a restricted shell, sudo and npm cannot be used here.${NC}\n\n"
+
+alias sudo='echo "ERROR: sudo / root access is not allowed by the homebridge service account. See https://kb.synology.com/en-id/DSM/tutorial/How_to_login_to_DSM_with_root_permission_via_SSH_Telnet \n" # '
+alias npm='echo "ERROR: npm not available here. Use pnpm instead, eg: pnpm" '
