@@ -7,6 +7,16 @@ HB_SERVICE_EXEC_PATH="$HB_SERVICE_STORAGE_PATH/node_modules/homebridge-config-ui
 
 source "$HB_SERVICE_ENV_SOURCE_PATH"
 
-echo "$(env)" > /tmp/env-dump
+# check for missing homebridge-config-ui-x
+if [ ! -f "$HB_SERVICE_EXEC_PATH" ]; then
+  cd $HB_SERVICE_STORAGE_PATH
+  pnpm install homebridge-config-ui-x@latest
+fi
+
+# check for missing homebridge
+if [ ! -f "$HB_SERVICE_STORAGE_PATH/node_modules/homebridge" ]; then
+  cd $HB_SERVICE_STORAGE_PATH
+  pnpm install homebridge@latest
+fi
 
 exec $HB_SERVICE_NODE_EXEC_PATH $HB_SERVICE_EXEC_PATH run -I -U $HB_SERVICE_STORAGE_PATH -P $HB_SERVICE_STORAGE_PATH/node_modules
