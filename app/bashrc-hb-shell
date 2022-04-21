@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# bashrc file for the hb-shell command
+
+source "$(readlink -f /var/packages/homebridge/target/app)/source.sh"
+source "/var/packages/homebridge/target/app/bashrc"
