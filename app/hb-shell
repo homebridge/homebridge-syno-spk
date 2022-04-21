@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ "$(id -u)" -ne 0 ]; then
+  echo "This command must be executed as root or with sudo."
+  exit 1
+fi
+
+printf "Entering Homebridge Shell. To exit type 'exit'.\n\n"
+
+HB_SERVICE_ENV_SOURCE_PATH="$(readlink -f /var/packages/homebridge/target/app)/source.sh"
+HB_SERVICE_STORAGE_PATH="$(readlink -f /var/packages/homebridge/shares/homebridge)"
+
+source "$HB_SERVICE_ENV_SOURCE_PATH"
+
+cd $HB_SERVICE_STORAGE_PATH
+
+exec sudo -E --user homebridge bash --rcfile /var/packages/homebridge/target/app/bashrc

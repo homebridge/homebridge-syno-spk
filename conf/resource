@@ -7,5 +7,10 @@
         "rw": ["homebridge"]
       }
     }]
+  },
+  "usr-local-linker": {
+    "bin": [
+      "app/hb-shell"
+    ]
   }
 }
