@@ -14,7 +14,7 @@ if [ ! -f "$HB_SERVICE_EXEC_PATH" ]; then
 fi
 
 # check for missing homebridge
-if [ ! -f "$HB_SERVICE_STORAGE_PATH/node_modules/homebridge" ]; then
+if [ ! -f "$HB_SERVICE_STORAGE_PATH/node_modules/homebridge/package.json" ]; then
   cd $HB_SERVICE_STORAGE_PATH
   pnpm install homebridge@latest
 fi

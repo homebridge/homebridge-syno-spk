@@ -14,6 +14,3 @@ export npm_config_store_dir=$HB_SERVICE_STORAGE_PATH/node_modules/.pnpm-store
 export HOMEBRIDGE_SYNOLOGY_PACKAGE=1
 export UIX_BASE_PATH_OVERRIDE=$HB_SERVICE_STORAGE_PATH/node_modules/homebridge-config-ui-x
 export UIX_USE_PNPM=1
-
-# copy .bashrc to service user home
-cp /var/packages/homebridge/target/app/bashrc /var/packages/homebridge/home/.bashrc
