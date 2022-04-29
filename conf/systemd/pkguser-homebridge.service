@@ -6,6 +6,6 @@ After=network-online.target
 Type=simple
 Slice=Homebridge.slice
 ExecStart=/var/packages/homebridge/target/app/start.sh
-Restart=on-failure
+Restart=always
 RestartSec=3
 KillMode=process

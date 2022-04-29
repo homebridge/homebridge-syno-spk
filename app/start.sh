@@ -7,16 +7,18 @@ HB_SERVICE_EXEC_PATH="$HB_SERVICE_STORAGE_PATH/node_modules/homebridge-config-ui
 
 source "$HB_SERVICE_ENV_SOURCE_PATH"
 
+cd $HB_SERVICE_STORAGE_PATH
+
 # check for missing homebridge-config-ui-x
 if [ ! -f "$HB_SERVICE_EXEC_PATH" ]; then
-  cd $HB_SERVICE_STORAGE_PATH
-  pnpm install homebridge-config-ui-x@latest
+  echo "Re-installing homebridge-config-ui-x..."
+  pnpm -C $HB_SERVICE_STORAGE_PATH install --save homebridge-config-ui-x@latest
 fi
 
 # check for missing homebridge
 if [ ! -f "$HB_SERVICE_STORAGE_PATH/node_modules/homebridge/package.json" ]; then
-  cd $HB_SERVICE_STORAGE_PATH
-  pnpm install homebridge@latest
+  echo "Re-installing homebridge..."
+  pnpm -C $HB_SERVICE_STORAGE_PATH install --save homebridge@latest
 fi
 
 # copy .bashrc to service user home
