@@ -1,7 +1,10 @@
 #!/bin/sh
 
 nodeBin="$(readlink -f /var/packages/homebridge/target)/app/bin"
-HB_SERVICE_STORAGE_PATH="$(readlink -f /var/packages/homebridge/shares/homebridge)"
+
+export HB_SERVICE_STORAGE_PATH="$(readlink -f /var/packages/homebridge/shares/homebridge)"
+export HB_SERVICE_NODE_EXEC_PATH="$(readlink -f /var/packages/homebridge/target)/app/bin/node"
+export HB_SERVICE_EXEC_PATH="$HB_SERVICE_STORAGE_PATH/node_modules/homebridge-config-ui-x/dist/bin/hb-service.js"
 
 export PATH="$nodeBin:$HB_SERVICE_STORAGE_PATH/node_modules/.bin:/opt/bin:/var/packages/ffmpeg/target/bin:$PATH"
 export PYTHON=/usr/bin/python3.8

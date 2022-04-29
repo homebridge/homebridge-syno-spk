@@ -1,0 +1,98 @@
+#!/bin/bash
+
+if [ "$(id -u)" -ne 0 ]; then
+  echo "This command must be executed as root or with sudo."
+  exit 1
+fi
+
+. "/var/packages/homebridge/target/app/source.sh"
+
+# default shell user
+SHELL_USER=homebridge
+SHELL_USER_HOME=$(eval echo ~$SHELL_USER)
+
+# default port
+PORT=8581
+
+function check_port_override {
+  if [ -f "$HB_SERVICE_STORAGE_PATH/config.json" ]; then
+    PORT_FROM_CONFIG=$(cat "$HB_SERVICE_STORAGE_PATH/config.json" | jq '.platforms[] | select(.platform == "config") | .port' 2> /dev/null)
+    if [ ${#PORT_FROM_CONFIG} -gt 0 ]; then
+      PORT=$PORT_FROM_CONFIG
+    fi
+  fi
+}
+
+case "$1" in
+  "restart")
+    echo "Restarting Homebridge..."
+    synopkg restart homebridge > /dev/null
+    ;;
+
+  "update-node")
+    hb_cmd="hb-service $@"
+    cd "$HB_SERVICE_STORAGE_PATH"
+    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$hb_cmd"
+    ;;
+
+  "rebuild")
+    hb_cmd="hb-service $@"
+    cd "$HB_SERVICE_STORAGE_PATH"
+    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$hb_cmd"
+    ;;
+
+  "status")
+    check_port_override
+    hb_cmd="hb-service status --port $PORT"
+    cd "$HB_SERVICE_STORAGE_PATH"
+    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$hb_cmd"
+    ;;
+
+  "add")
+    pnpm_cmd="pnpm -C $HB_SERVICE_STORAGE_PATH $@"
+    cd "$HB_SERVICE_STORAGE_PATH"
+    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$pnpm_cmd"
+    ;;
+
+  "remove")
+    pnpm_cmd="pnpm -C $HB_SERVICE_STORAGE_PATH $@"
+    cd "$HB_SERVICE_STORAGE_PATH"
+    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$pnpm_cmd"
+    ;;
+
+  "logs")
+    exec tail -n 100 -f "$HB_SERVICE_STORAGE_PATH/homebridge.log"
+    ;;
+
+  "shell")
+    exec /var/packages/homebridge/target/app/hb-shell
+    ;;
+
+  "install")
+    echo "The 'hb-service install' command is not available when Homebridge is running as a system package."
+    exit 1
+    ;;
+
+  "uninstall")
+    echo "The 'hb-service uninstall' command is not available when Homebridge is running as a system package."
+    exit 1
+    ;;
+
+  *)
+    printf '%s\n' \
+      "Usage: hb-service [restart|logs|status|update-node]"   \
+      ""   \
+      "This hb-service command is provided by Homebridge Synology Package" \
+      "" \
+      "Please provide a command:" \
+      "    restart                          restart the homebridge service" \
+      "    add <plugin>@<version>           install a plugin" \
+      "    remove <plugin>@<version>        remove a plugin" \
+      "    update-node [version]            update Node.js" \
+      "    logs                             tails the homebridge service logs" \
+      "    status                           check if the Homebridge UI web server is running" \
+      "    shell                            open the Homebridge Terminal" \
+      "" \
+      "See the wiki for help with hb-service: https://homebridge.io/w/JTtHK"
+    ;;
+esac

@@ -10,7 +10,8 @@
   },
   "usr-local-linker": {
     "bin": [
-      "app/hb-shell"
+      "app/hb-shell",
+      "app/hb-service"
     ]
   }
 }

@@ -5,8 +5,17 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
+# change to working directory
+cd "$(readlink -f /var/packages/homebridge/shares/homebridge)"
+
+# default shell user
+SHELL_USER=homebridge
+
+# get the shell user's home directory
+SHELL_USER_HOME=$(eval echo ~$SHELL_USER)
+
 printf "Entering Homebridge Shell. To exit type 'exit'.\n\n"
 
 cd "$(readlink -f /var/packages/homebridge/shares/homebridge)"
 
-exec sudo --user homebridge bash --rcfile /var/packages/homebridge/target/app/bashrc-hb-shell
+exec sudo --user "$SHELL_USER" env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/bashrc-hb-shell
