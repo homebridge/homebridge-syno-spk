@@ -40,7 +40,7 @@ This package will deploy Homebridge and the Homebridge UI natively on your Synol
 
 *Please note low power device make take 10-15 minutes to install the package.*
 
-Once the install has completed, a new Homebridge entry will be shown in the DSM main menu which will open the Homebridge UI.
+Once the install has completed, a new Homebridge menu item will be shown in DSM which will open the Homebridge UI.
 
 The Homebridge UI app starts on port `8581`. The default username is **admin** with password **admin**.
 
