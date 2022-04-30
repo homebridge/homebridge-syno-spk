@@ -1,4 +1,4 @@
-name: Build Packages
+name: Build and Publish
 
 on:
   workflow_dispatch:
@@ -8,83 +8,87 @@ on:
         required: true
 
 jobs:
-  # release:
-  #   name: Create Release
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  #     - name: Create Release
-  #       id: create_release
-  #       uses: actions/create-release@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       with:
-  #         tag_name: ${{ github.event.inputs.version }}
-  #         release_name: ${{ github.event.inputs.version }}
-  #         prerelease: false
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          release_name: ${{ github.event.inputs.version }}
+          prerelease: true
 
-  # build:
-  #   name: Build Packages
-  #   # needs: release
-  #   strategy:
-  #     matrix:
-  #       include:
-  #         - SPK_PLATFORM: braswell
-  #           SPK_ARCH: x86_64
-  #           NODE_ARCH: x64
-  #         - SPK_PLATFORM: rtd1296
-  #           SPK_ARCH: armv8
-  #           NODE_ARCH: arm64
-  #         - SPK_PLATFORM: armada37xx
-  #           SPK_ARCH: armada37xx
-  #           NODE_ARCH: arm64
-  #         - SPK_PLATFORM: armada38x
-  #           SPK_ARCH: armada38x
-  #           NODE_ARCH: armv7l
-  #         - SPK_PLATFORM: alpine
-  #           SPK_ARCH: armv7
-  #           NODE_ARCH: armv7l
+  build:
+    name: Build Packages
+    needs: release
+    strategy:
+      matrix:
+        include:
+          - SPK_PLATFORM: braswell
+            SPK_ARCH: x86_64
+            NODE_ARCH: x64
+          - SPK_PLATFORM: rtd1296
+            SPK_ARCH: armv8
+            NODE_ARCH: arm64
+          - SPK_PLATFORM: armada37xx
+            SPK_ARCH: armada37xx
+            NODE_ARCH: arm64
+          - SPK_PLATFORM: armada38x
+            SPK_ARCH: armada38x
+            NODE_ARCH: armv7l
+          - SPK_PLATFORM: alpine
+            SPK_ARCH: armv7
+            NODE_ARCH: armv7l
 
-  #   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #   - uses: actions/checkout@v2
+    steps:
+    - uses: actions/checkout@v2
 
-  #   - name: Get the upload URL for a release
-  #     id: get_release
-  #     uses: bruceadams/get-release@v1.2.1
-  #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Get the upload URL for a release
+      id: get_release
+      uses: bruceadams/get-release@v1.2.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  #   - name: Setup Toolchain
-  #     run: |
-  #       sudo -E ./.ci/setup-toolchain.sh
-  #     env:
-  #       SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
+    - name: Setup Toolchain
+      run: |
+        sudo -E ./.ci/setup-toolchain.sh
+      env:
+        SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
 
-  #   - name: Build Package
-  #     run: |
-  #       sudo -E ./.ci/build-package.sh
-  #     env:
-  #       SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
-  #       SPK_ARCH: ${{ matrix.SPK_ARCH }}
-  #       SPK_PACKAGE_VERSION: ${{ github.event.inputs.version }}
-  #       NODE_ARCH: ${{ matrix.NODE_ARCH }}
+    - name: Build Package
+      run: |
+        sudo -E ./.ci/build-package.sh
+      env:
+        SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
+        SPK_ARCH: ${{ matrix.SPK_ARCH }}
+        SPK_PACKAGE_VERSION: ${{ github.event.inputs.version }}
+        NODE_ARCH: ${{ matrix.NODE_ARCH }}
 
-  #   - uses: AButler/upload-release-assets@v2.0
-  #     with:
-  #       files: homebridge-${{ matrix.SPK_PLATFORM }}-${{ github.event.inputs.version }}.spk
-  #       repo-token: ${{ secrets.GITHUB_TOKEN }}
-  #       release-tag: ${{ github.event.inputs.version }}
+    - uses: AButler/upload-release-assets@v2.0
+      with:
+        files: homebridge-${{ matrix.SPK_PLATFORM }}-${{ github.event.inputs.version }}.spk
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        release-tag: ${{ github.event.inputs.version }}
 
   update-spk-repo:
     name: Publish to Repo
-    # needs: build
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
 
     - name: Get the release
       id: get_release
