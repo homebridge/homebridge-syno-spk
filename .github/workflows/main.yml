@@ -1,68 +1,120 @@
 name: CI
 
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version / Tag (x.x.x):'     
+        required: true
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        include:
-          - SPK_PLATFORM: braswell
-            SPK_ARCH: x86_64
-            NODE_ARCH: x64
-          - SPK_PLATFORM: rtd1296
-            SPK_ARCH: armv8
-            NODE_ARCH: arm64
-          - SPK_PLATFORM: armada37xx
-            SPK_ARCH: armada37xx
-            NODE_ARCH: arm64
-          - SPK_PLATFORM: armada38x
-            SPK_ARCH: armada38x
-            NODE_ARCH: armv7l
-          - SPK_PLATFORM: alpine
-            SPK_ARCH: armv7
-            NODE_ARCH: armv7l
+  # release:
+  #   name: Create Release
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
+  #     - name: Create Release
+  #       id: create_release
+  #       uses: actions/create-release@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         tag_name: ${{ github.event.inputs.version }}
+  #         release_name: ${{ github.event.inputs.version }}
+  #         prerelease: false
+
+  # build:
+  #   name: Build Packages
+  #   # needs: release
+  #   strategy:
+  #     matrix:
+  #       include:
+  #         - SPK_PLATFORM: braswell
+  #           SPK_ARCH: x86_64
+  #           NODE_ARCH: x64
+  #         - SPK_PLATFORM: rtd1296
+  #           SPK_ARCH: armv8
+  #           NODE_ARCH: arm64
+  #         - SPK_PLATFORM: armada37xx
+  #           SPK_ARCH: armada37xx
+  #           NODE_ARCH: arm64
+  #         - SPK_PLATFORM: armada38x
+  #           SPK_ARCH: armada38x
+  #           NODE_ARCH: armv7l
+  #         - SPK_PLATFORM: alpine
+  #           SPK_ARCH: armv7
+  #           NODE_ARCH: armv7l
+
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+
+  #   - name: Get the upload URL for a release
+  #     id: get_release
+  #     uses: bruceadams/get-release@v1.2.1
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  #   - name: Setup Toolchain
+  #     run: |
+  #       sudo -E ./.ci/setup-toolchain.sh
+  #     env:
+  #       SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
+
+  #   - name: Build Package
+  #     run: |
+  #       sudo -E ./.ci/build-package.sh
+  #     env:
+  #       SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
+  #       SPK_ARCH: ${{ matrix.SPK_ARCH }}
+  #       SPK_PACKAGE_VERSION: ${{ github.event.inputs.version }}
+  #       NODE_ARCH: ${{ matrix.NODE_ARCH }}
+
+  #   - uses: AButler/upload-release-assets@v2.0
+  #     with:
+  #       files: homebridge-${{ matrix.SPK_PLATFORM }}-${{ github.event.inputs.version }}.spk
+  #       repo-token: ${{ secrets.GITHUB_TOKEN }}
+  #       release-tag: ${{ github.event.inputs.version }}
+
+  update-spk-repo:
+    name: Publish to Repo
+    # needs: build
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - name: Get the upload URL for a release
+    - name: Get the release
       id: get_release
-      uses: bruceadams/get-release@v1.2.1
+      uses: cardinalby/git-get-release-action@1.2.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Get the version (git tag)
-      id: get_version
-      run: |
-        echo ${GITHUB_REF/refs\/tags\//}
-        echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
-    - name: Setup Toolchain
-      run: |
-        sudo -E ./.ci/setup-toolchain.sh
-      env:
-        SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
-
-    - name: Build Package
-      run: |
-        sudo -E ./.ci/build-package.sh
-      env:
-        SPK_PLATFORM: ${{ matrix.SPK_PLATFORM }}
-        SPK_ARCH: ${{ matrix.SPK_ARCH }}
-        SPK_PACKAGE_VERSION: ${{ steps.get_release.outputs.tag_name }}
-        NODE_ARCH: ${{ matrix.NODE_ARCH }}
-
-    - name: Upload SPK To Release
-      uses: actions/upload-release-asset@v1.0.2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
       with:
-        upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: ./homebridge-${{ matrix.SPK_PLATFORM }}-${{ steps.get_release.outputs.tag_name }}.spk
-        asset_name: homebridge-${{ matrix.SPK_PLATFORM }}-${{ steps.get_release.outputs.tag_name }}.spk
-        asset_content_type: application/octet-stream
+        tag: ${{ github.event.inputs.version }}
+
+    - name: Download release assets
+      uses: dsaltares/fetch-gh-release-asset@0.0.8
+      with:
+        version: ${{ steps.get_release.outputs.id }}
+        regex: true
+        file: "homebridge-.*\\.spk"
+        target: "repo/spks/"
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build Repo Generator
+      run: |
+        cd repo
+        npm install
+
+    - name: Generate Repo JSON
+      run: |
+        cd repo
+        node index.js
+
+    - name: Upload Repo JSON to S3
+      run: aws s3 cp repo/spks/synology-spk-repo.json s3://repo.homebridge.io/
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
