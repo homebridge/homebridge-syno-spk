@@ -24,6 +24,60 @@ jobs:
           tag_name: ${{ github.event.inputs.version }}
           release_name: ${{ github.event.inputs.version }}
           prerelease: true
+          body: |
+            **For DSM 7.x.x only.**
+
+            **This package does not use Docker. If you are currently running Homebridge in Docker, [create a backup](https://github.com/homebridge/homebridge/wiki/Backup-and-Restore) and remove the container before installing this package.**
+
+            ### Breaking Changes
+
+            Version v3.x.x contains breaking changes for users upgrading from v2.x.x or earlier. Plugins will require re-installation. You should [create a backup](https://github.com/homebridge/homebridge/wiki/Backup-and-Restore) before upgrading.
+
+            ### Supported Models
+
+            * **x86_64** - All Intel / AMD 64 bit CPU Models
+            * **armv8** -  DS420j, DS220j, RS819, DS418, DS218, DS218play, DS118
+            * **armada37xx** (armv8) - DS120j, DS119j
+            * **armada38x** (armv7) - DS419slim, DS218j, RS217, RS816, DS416j, DS416slim, DS216, DS216j, DS116
+            * **armv7** - DS1817, DS1517, DS416, DS2015xs, DS1515, DS715, DS215+
+
+            ### Installation
+
+            This package will deploy Homebridge and the Homebridge UI natively on your Synology NAS. It will create a new shared named `homebridge` to store the Homebridge configuration and user data.
+
+            #### Add the Homebridge Synology Package Source:
+
+            1. Open Package Center in DSM and select the `Settings` option.
+            2. Select the `Package Sources` tab.
+            3. Click `Add`
+            4. In the `Name` section enter `Homebridge`
+            5. In the `Location` section enter `https://synology.homebridge.io`
+            6. Click `OK`
+
+            #### Install Homebridge:
+
+            1. Go back to Package Center and search for `Homebridge`
+            2. Click on the `Homebridge` package then select `Install`
+            3. Click `Agree` when warned about using a package from an unknown publisher.
+            4. Click `Done` to confirm installation. 
+
+            *Please note low power device make take 10-15 minutes to install the package.*
+
+            The Homebridge UI app starts on port `8581`. The default username is **admin** with password **admin**.
+
+            ### Recommended Post-Install Steps:
+
+            * [Enable compiling native modules](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
+            * [Install ffmpeg with libfdk_aac](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-ffmpeg-with-libfdk_aac)
+            * [Install git](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Install-git)
+
+            ---
+
+            <span align="center">
+
+            *If you like the [Homebridge UI](https://github.com/oznu/homebridge-config-ui-x) or the [Homebridge Synology Package Installer](https://github.com/oznu/homebridge-syno-spk) please consider [donating via PayPal](https://paypal.me/oznu) ❤️*
+
+            </span>
 
   build:
     name: Build Packages
