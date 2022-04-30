@@ -1,4 +1,4 @@
-name: CI
+name: Build Packages
 
 on:
   workflow_dispatch:
@@ -114,7 +114,9 @@ jobs:
         node index.js
 
     - name: Upload Repo JSON to S3
-      run: aws s3 cp repo/spks/synology-spk-repo.json s3://repo.homebridge.io/
+      run: |
+        cat repo/spks/synology-spk-repo.json | jq
+        aws s3 cp repo/spks/synology-spk-repo.json s3://repo.homebridge.io/
       env:
         AWS_EC2_METADATA_DISABLED: true
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
