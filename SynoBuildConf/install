@@ -6,6 +6,8 @@ INST_DIR="/tmp/_homebridge"      # temp folder for dsm files
 PKG_DIR="/tmp/_homebridge_pkg"   # temp folder for package files
 PKG_DEST="/image/packages"
 
+ORIGINAL_PWD=$(pwd)
+
 # prepare install and package dir
 for dir in $INST_DIR $PKG_DIR; do
         rm -rf "$dir"
@@ -19,6 +21,14 @@ cp -a ui/* $INST_DIR/ui
 
 [ -d $INST_DIR/app ] || install -d $INST_DIR/app
 cp -a app/* $INST_DIR/app
+
+# add libatomic from toolchain (needed for arm builds)
+TC_LIBATOMIC_FILE=libatomic.so.1.2.0
+install -m 644 /usr/local/sysroot/lib/$TC_LIBATOMIC_FILE "$INST_DIR/app/lib/"
+cd "$INST_DIR/app/lib/"
+ln -sf $TC_LIBATOMIC_FILE libatomic.so.1
+ln -sf $TC_LIBATOMIC_FILE libatomic.so	
+cd "$ORIGINAL_PWD"
 
 [ -d $PKG_DIR ] || install -d $PKG_DIR
 [ -d $PKG_DIR/scripts ] || install -d $PKG_DIR/scripts

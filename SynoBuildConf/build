@@ -6,7 +6,7 @@ case ${MakeClean} in
 	# extract node
 	tar xzf "node-linux.tar.gz" -C app/ --strip-components=1 --no-same-owner
 	export npm_config_prefix=$(pwd)/app
-	npm install -g pnpm
+	npm install -g pnpm # this is running under the toolchain's copy of x64 Node.js, not the Node.js that was just extracted
         ;;
 esac
 

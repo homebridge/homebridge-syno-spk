@@ -29,6 +29,11 @@ if [ -e /opt/bin/python3 ]; then
   export PYTHON=/opt/bin/python3
 fi 
 
+# it seems like only armv7l is missing the libatomic.so library, so only change the lib path on that platform
+if [ "$(uname -m)" = "armv7l" ]; then
+  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$(readlink -f /var/packages/homebridge/target)/app/lib"
+fi
+
 export npm_config_global_style=true
 export npm_config_audit=false
 export npm_config_fund=false
