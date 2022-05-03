@@ -1,13 +1,33 @@
 #!/bin/sh
 
-nodeBin="$(readlink -f /var/packages/homebridge/target)/app/bin"
+NODE_BIN_PATH="$(readlink -f /var/packages/homebridge/target)/app/bin"
 
 export HB_SERVICE_STORAGE_PATH="$(readlink -f /var/packages/homebridge/shares/homebridge)"
 export HB_SERVICE_NODE_EXEC_PATH="$(readlink -f /var/packages/homebridge/target)/app/bin/node"
 export HB_SERVICE_EXEC_PATH="$HB_SERVICE_STORAGE_PATH/node_modules/homebridge-config-ui-x/dist/bin/hb-service.js"
 
-export PATH="$nodeBin:$HB_SERVICE_STORAGE_PATH/node_modules/.bin:/opt/bin:/var/packages/ffmpeg/target/bin:$PATH"
-export PYTHON=/usr/bin/python3.8
+# synocommunity ffmpeg path
+if [ -d /var/packages/ffmpeg/target/bin ]; then
+  export PATH="/var/packages/ffmpeg/target/bin:$PATH"
+fi
+
+# entware path
+if [ -d /opt/bin ]; then
+  export PATH="/opt/bin:$PATH"
+fi
+
+# add node and node_modules bin paths
+export PATH="$NODE_BIN_PATH:$HB_SERVICE_STORAGE_PATH/node_modules/.bin:$PATH"
+
+# synology python
+if [ -e /usr/bin/python3 ]; then
+  export PYTHON=/usr/bin/python3
+fi
+
+# prefer to use entware python if available
+if [ -e /opt/bin/python3 ]; then
+  export PYTHON=/opt/bin/python3
+fi 
 
 export npm_config_global_style=true
 export npm_config_audit=false

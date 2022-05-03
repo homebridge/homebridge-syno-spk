@@ -13,5 +13,8 @@
       "app/hb-shell",
       "app/hb-service"
     ]
+  },
+  "port-config": {
+    "protocol-file": "app/homebridge.sc"
   }
 }
