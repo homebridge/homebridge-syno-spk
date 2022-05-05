@@ -29,7 +29,8 @@ if [ -e /opt/bin/python3 ]; then
   export PYTHON=/opt/bin/python3
 fi 
 
-# it seems like only armv7l is missing the libatomic.so library, so only change the lib path on that platform
+# libatomic.so is only required on the armv7l platform - nodejs/node#37219
+# we are also using the conf/resource/usr-local-linker, but this will not happen before the postinst script
 if [ "$(uname -m)" = "armv7l" ]; then
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$(readlink -f /var/packages/homebridge/target)/app/lib"
 fi
