@@ -78,6 +78,32 @@ case "$1" in
     exit 1
     ;;
 
+  "install-libatomic-lib")
+    if [ "$(uname -m)" = "armv7l" ] && [ -f /var/packages/homebridge/target/app/lib/libatomic.so.1.2.0 ]; then
+      install -m 644 "/var/packages/homebridge/target/app/lib/libatomic.so.1.2.0" "/usr/lib/"
+      cd /usr/lib
+      ln -sf libatomic.so.1.2.0 libatomic.so.1
+      ln -sf libatomic.so.1.2.0 libatomic.so
+      ls -la /usr/lib/libatomic*
+      exit 0
+    else
+      echo "Nothing to do on $(uname -m)"
+      exit 1
+    fi
+    ;;
+
+  "remove-libatomic-lib")
+    if [ "$(uname -m)" = "armv7l" ] && [ -f /usr/lib/libatomic.so.1.2.0 ]; then
+      rm -rf /usr/lib/libatomic.so.1.2.0
+      rm -rf /usr/lib/libatomic.so.1
+      rm -rf /usr/lib/libatomic.so
+      exit 0
+    else
+      echo "Nothing to do on $(uname -m)"
+      exit 1
+    fi
+    ;;
+
   *)
     printf '%s\n' \
       "Usage: hb-service [restart|logs|status|update-node]"   \

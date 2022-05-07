@@ -11,7 +11,7 @@ cp -R $GITHUB_WORKSPACE /toolkit/source/homebridge-syno-spk
 cd /toolkit/source/homebridge-syno-spk
 
 NODE_LTS="$(curl -s https://nodejs.org/dist/index.json | jq -r 'map(select(.lts))[0].version')"
-wget https://nodejs.org/dist/$NODE_LTS/node-$NODE_LTS-linux-${NODE_ARCH}.tar.gz -O node-linux.tar.gz
+wget https://nodejs.org/dist/$NODE_LTS/node-$NODE_LTS-linux-${NODE_ARCH}.tar.gz -O node-linux-${NODE_ARCH}.tar.gz
 
 # build spk
 /toolkit/pkgscripts-ng/PkgCreate.py -p $SPK_PLATFORM -c homebridge-syno-spk
