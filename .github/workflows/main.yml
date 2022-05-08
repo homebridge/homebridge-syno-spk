@@ -31,7 +31,7 @@ jobs:
 
             ### Breaking Changes
 
-            Version v3.x.x contains breaking changes for users upgrading from v2.x.x or earlier. Plugins will require re-installation. You should [create a backup](https://github.com/homebridge/homebridge/wiki/Backup-and-Restore) before upgrading.
+            :warning: Version v3.x.x contains breaking changes for users upgrading from v2.x.x or earlier. **Plugins will require re-installation.** You should [create a backup](https://github.com/homebridge/homebridge/wiki/Backup-and-Restore) before upgrading.
 
             ### Supported Models
 
@@ -64,6 +64,8 @@ jobs:
             *Please note low power device make take 10-15 minutes to install the package.*
 
             The Homebridge UI app starts on port `8581`. The default username is **admin** with password **admin**.
+
+            If you have the Synology Firewall enabled, make a rule to allow access to port 8581 and the port Homebridge was assigned too.
 
             ### Recommended Post-Install Steps:
 

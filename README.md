@@ -44,6 +44,8 @@ Once the install has completed, a new Homebridge menu item will be shown in DSM 
 
 The Homebridge UI app starts on port `8581`. The default username is **admin** with password **admin**.
 
+If you have the Synology Firewall enabled, make a rule to allow access to port 8581 and the port Homebridge was assigned too.
+
 ### Recommended Optional Steps:
 
 * [Enable compiling native modules](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
