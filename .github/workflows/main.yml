@@ -87,6 +87,9 @@ jobs:
     strategy:
       matrix:
         include:
+          - SPK_PLATFORM: evansport
+            SPK_ARCH: i686
+            NODE_ARCH: x32
           - SPK_PLATFORM: braswell
             SPK_ARCH: x86_64
             NODE_ARCH: x64
