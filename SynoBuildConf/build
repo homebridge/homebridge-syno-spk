@@ -6,7 +6,10 @@ case ${MakeClean} in
 	# extract node
 	tar xzf "node-linux-${NODE_ARCH}.tar.gz" -C app/ --strip-components=1 --no-same-owner
 	export npm_config_prefix=$(pwd)/app
-	npm install -g pnpm # this is running under the toolchain's copy of x64 Node.js, not the Node.js that was just extracted
+    export npm_config_ignore_scripts=true
+    # this is running under the toolchain's copy of x64 Node.js, not the Node.js that was just extracted
+	npm install -g pnpm
+    npm install -g homebridge-config-ui-x@4.48.0-test.3
         ;;
 esac
 
