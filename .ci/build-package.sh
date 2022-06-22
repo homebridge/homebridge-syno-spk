@@ -14,7 +14,7 @@ cd /toolkit/source/homebridge-syno-spk
 
 # get meta about most recent LTS
 NODE_OFFICIAL_LTS="$(curl -s https://nodejs.org/dist/index.json | jq -r 'map(select(.lts))[0].version')"
-NODE_LTS=echo ${NODE_OFFICIAL_LTS} | jq -r "select([.files[] == \"linux-${NODE_ARCH}\"] | any).version"
+NODE_LTS="$(echo ${NODE_OFFICIAL_LTS} | jq -r \"select([.files[] == \\\"linux-${NODE_ARCH}\\\"] | any).version\")"
 # check if arch officially supported
 if [ ! -z $NODE_LTS ];
 then
