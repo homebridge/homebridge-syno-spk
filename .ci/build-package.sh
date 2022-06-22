@@ -3,8 +3,6 @@
 set -x
 set -e
 
-function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
-
 # move build files into source dir
 mkdir -p /toolkit/source
 cp -R $GITHUB_WORKSPACE /toolkit/source/homebridge-syno-spk
