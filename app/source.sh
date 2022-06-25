@@ -1,6 +1,6 @@
 #!/bin/sh
 
-NODE_BIN_PATH="$(readlink -f /var/packages/homebridge/target)/app/bin"
+NODE_BIN_PATH="/var/packages/homebridge/target/app/bin"
 
 export HB_SERVICE_STORAGE_PATH="$(readlink -f /var/packages/homebridge/shares/homebridge)"
 export HB_SERVICE_NODE_EXEC_PATH="/var/packages/homebridge/target/app/bin/node"
@@ -39,11 +39,11 @@ export npm_config_global_style=true
 export npm_config_audit=false
 export npm_config_fund=false
 export npm_config_update_notifier=false
-export npm_config_store_dir="$HB_SERVICE_STORAGE_PATH/node_modules/.pnpm-store"
+export npm_config_auto_install_peers=true
+export npm_config_loglevel=error
 export npm_config_prefix="/var/packages/homebridge/target/app"
-export npm_config_global_pnpmfile="/var/packages/homebridge/target/app/global_pnpmfile.cjs"
 
 export HOMEBRIDGE_SYNOLOGY_PACKAGE=1
 export UIX_CUSTOM_PLUGIN_PATH="$HB_SERVICE_STORAGE_PATH/node_modules"
 export UIX_BASE_PATH_OVERRIDE="/var/packages/homebridge/target/app/lib/node_modules/homebridge-config-ui-x"
-export UIX_USE_PNPM=1
+export UIX_USE_PNPM=0

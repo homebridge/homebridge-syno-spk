@@ -49,15 +49,15 @@ case "$1" in
     ;;
 
   "add")
-    pnpm_cmd="pnpm -C $HB_SERVICE_STORAGE_PATH $@"
+    npm_cmd="npm --prefix $HB_SERVICE_STORAGE_PATH $@"
     cd "$HB_SERVICE_STORAGE_PATH"
-    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$pnpm_cmd"
+    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$npm_cmd"
     ;;
 
   "remove")
-    pnpm_cmd="pnpm -C $HB_SERVICE_STORAGE_PATH $@"
+    npm_cmd="npm --prefix $HB_SERVICE_STORAGE_PATH $@"
     cd "$HB_SERVICE_STORAGE_PATH"
-    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$pnpm_cmd"
+    exec sudo --user $SHELL_USER env "HOME=$SHELL_USER_HOME" bash --rcfile /var/packages/homebridge/target/app/source.sh -ci "$npm_cmd"
     ;;
 
   "logs")
