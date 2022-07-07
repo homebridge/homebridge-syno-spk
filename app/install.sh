@@ -4,17 +4,21 @@
 
 cd "$HB_SERVICE_STORAGE_PATH"
 
-# if the package-lock.json is missing, delete plugins so they are freshly installed
-if [ ! -e "$HB_SERVICE_STORAGE_PATH/package-lock.json" ]; then
-  rm -rf "$HB_SERVICE_STORAGE_PATH/node_modules"
-  rm -rf "$HB_SERVICE_STORAGE_PATH/pnpm-lock.yaml"
+# copy .bashrc to service user home
+cp "/var/packages/homebridge/target/app/bashrc" "/var/packages/homebridge/home/.bashrc"
+
+# copy .npmrc
+cp "/var/packages/homebridge/target/app/npmrc" "$HB_SERVICE_STORAGE_PATH/.npmrc"
+
+# remove the package-lock.json
+if [ -e "$HB_SERVICE_STORAGE_PATH/package-lock.json" ]; then
+  rm -rf "$HB_SERVICE_STORAGE_PATH/package-lock.json"
 fi
 
 # if coming from an old pnpm based install, delete plugins so they are freshly installed
 if [ -e "$HB_SERVICE_STORAGE_PATH/pnpm-lock.yaml" ]; then
   rm -rf "$HB_SERVICE_STORAGE_PATH/node_modules"
   rm -rf "$HB_SERVICE_STORAGE_PATH/pnpm-lock.yaml"
-  rm -rf "$HB_SERVICE_STORAGE_PATH/package-lock.json"
 fi
 
 # remove homebridge-config-ui-x from the package.json
@@ -37,6 +41,3 @@ fi
 # install plugins
 echo "Installing plugins, please wait..."
 npm --prefix "$HB_SERVICE_STORAGE_PATH" install
-
-# copy .bashrc to service user home
-cp /var/packages/homebridge/target/app/bashrc /var/packages/homebridge/home/.bashrc

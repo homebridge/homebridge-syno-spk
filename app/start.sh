@@ -16,6 +16,11 @@ if [ -e "$HB_SERVICE_STORAGE_PATH/package.json" ]; then
   fi
 fi
 
+# remove the package-lock.json
+if [ -e "$HB_SERVICE_STORAGE_PATH/package-lock.json" ]; then
+  rm -rf "$HB_SERVICE_STORAGE_PATH/package-lock.json"
+fi
+
 # check for missing homebridge
 if [ ! -f "$HB_SERVICE_STORAGE_PATH/node_modules/homebridge/package.json" ]; then
   echo "Re-installing homebridge..."

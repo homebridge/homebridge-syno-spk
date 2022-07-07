@@ -33,7 +33,7 @@ const path = require('path');
       dname: 'Homebridge',
       desc: 'Homebridge on Synology DSM.',
       price: 0,
-      download_count: 51031,
+      download_count: 56691,
       recent_download_count: 1138,
       link: `https://github.com/oznu/homebridge-syno-spk/releases/download/${version}/${spk}`,
       size: fileStat.size,

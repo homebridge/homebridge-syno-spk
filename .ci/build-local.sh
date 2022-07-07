@@ -3,7 +3,7 @@
 export NODE_ARCH=arm64
 export SPK_PLATFORM=armada37xx
 export SPK_ARCH=armada37xx
-export SPK_PACKAGE_VERSION="3.0.4"
+export SPK_PACKAGE_VERSION="3.0.6"
 
 # get node
 if [ ! -f "node-linux-${NODE_ARCH}.tar.gz" ]; then

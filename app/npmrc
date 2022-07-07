@@ -1,0 +1,7 @@
+audit = false
+auto-install-peers = true
+fund = false
+global-style = true
+loglevel = "error"
+update-notifier = false
+package-lock = false

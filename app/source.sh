@@ -36,6 +36,7 @@ if [ "$(uname -m)" = "armv7l" ]; then
 fi
 
 export npm_config_global_style=true
+export npm_config_package_lock=false
 export npm_config_audit=false
 export npm_config_fund=false
 export npm_config_update_notifier=false
@@ -47,3 +48,4 @@ export HOMEBRIDGE_SYNOLOGY_PACKAGE=1
 export UIX_CUSTOM_PLUGIN_PATH="$HB_SERVICE_STORAGE_PATH/node_modules"
 export UIX_BASE_PATH_OVERRIDE="/var/packages/homebridge/target/app/lib/node_modules/homebridge-config-ui-x"
 export UIX_USE_PNPM=0
+export UIX_USE_PLUGIN_BUNDLES=1
