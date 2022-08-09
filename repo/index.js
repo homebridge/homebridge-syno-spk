@@ -8,7 +8,7 @@ const path = require('path');
   const architectures = {
     braswell: ['x86_64', 'apollolake', 'avoton', 'braswell', 'broadwell', 'broadwellnk', 'broadwellntb',
       'broadwellntbap', 'bromolow', 'cedarview', 'coffeelake', 'denverton', 'geminilake', 'grantley',
-      'kvmx64', 'purley', 'skylaked', 'v1000'],
+      'kvmx64', 'purley', 'skylaked', 'v1000', 'r1000'],
     evansport: ['i686', 'evansport'],
     alpine: ['armv7', 'alpine', 'alpine4k'],
     rtd1296: ['armv8', 'rtd1296'],
