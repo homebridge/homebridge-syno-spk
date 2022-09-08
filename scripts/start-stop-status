@@ -1,12 +1,13 @@
 #!/bin/bash
 case "$1" in
     start)
-	synosystemctl start pkguser-homebridge
+	synosystemctl start pkgctl-homebridge
         ;;
     stop)
-	synosystemctl stop pkguser-homebridge
+	synosystemctl stop pkgctl-homebridge
         ;;
     status)
+	synosystemctl get-active-status pkgctl-homebridge
         ;;
     log)
         echo ""
