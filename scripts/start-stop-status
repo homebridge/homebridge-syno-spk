@@ -1,13 +1,25 @@
 #!/bin/bash
 case "$1" in
     start)
-	synosystemctl start pkgctl-homebridge
+        if [ "${EUID}" -eq 0 ]; then
+            sudo -u homebridge synosystemctl start pkguser-homebridge
+        else
+            synosystemctl start pkguser-homebridge
+        fi
         ;;
     stop)
-	synosystemctl stop pkgctl-homebridge
+        if [ "${EUID}" -eq 0 ]; then
+            sudo -u homebridge synosystemctl stop pkguser-homebridge
+        else
+            synosystemctl stop pkguser-homebridge
+        fi
         ;;
     status)
-	synosystemctl get-active-status pkgctl-homebridge
+        if [ "${EUID}" -eq 0 ]; then
+            sudo -u homebridge synosystemctl get-active-status pkguser-homebridge
+        else
+            synosystemctl get-active-status pkguser-homebridge
+        fi
         ;;
     log)
         echo ""
@@ -17,4 +29,3 @@ case "$1" in
         exit 1
         ;;
 esac
-exit 0
