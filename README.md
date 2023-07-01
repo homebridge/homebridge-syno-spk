@@ -2,8 +2,8 @@
 <img width="400px" src="https://user-images.githubusercontent.com/3979615/79035227-bdd5be00-7bff-11ea-900f-2fef01bba4ba.png">
 </p>
 
-[![GitHub release](https://img.shields.io/github/release/oznu/homebridge-syno-spk.svg)](https://github.com/oznu/homebridge-syno-spk/releases/latest)
-[![Build](https://github.com/oznu/homebridge-syno-spk/workflows/Build/badge.svg)](https://github.com/oznu/homebridge-syno-spk/actions)
+[![GitHub release](https://img.shields.io/github/release/homebridge/homebridge-syno-spk.svg)](https://github.com/homebridge/homebridge-syno-spk/releases/latest)
+[![Build](https://github.com/homebridge/homebridge-syno-spk/workflows/Build/badge.svg)](https://github.com/homebridge/homebridge-syno-spk/actions)
 [![Donate](https://badgen.net/badge/donate/paypal/yellow)](https://paypal.me/oznu)
 
 # Homebridge Package for Synology DSM
@@ -49,15 +49,15 @@ If you have the Synology Firewall enabled, make a rule to allow access to port 8
 
 ### Recommended Optional Steps:
 
-* [Enable compiling native modules](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
-* [Install ffmpeg with libfdk_aac](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-ffmpeg-with-libfdk_aac)
-* [Install git](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Install-git)
+* [Enable compiling native modules](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
+* [Install ffmpeg with libfdk_aac](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-ffmpeg-with-libfdk_aac)
+* [Install git](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-Install-git)
 
 ## Issues
 
 If you have an issue with the installation of Homebridge using this package please raise an issue on this project's GitHub page. For everything else:
 
-* Homebridge UI Issues: [oznu/homebridge-config-ui-x](https://github.com/oznu/homebridge-config-ui-x)
+* Homebridge UI Issues: [homebridge/homebridge-config-ui-x](https://github.com/homebridge/homebridge-config-ui-x)
 * General Homebridge Issues: [nfarina/homebridge](https://github.com/nfarina/homebridge)
 * For problems with individual plugins please raise issues on the relevant GitHub project page.
 

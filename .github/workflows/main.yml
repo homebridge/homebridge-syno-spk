@@ -70,15 +70,15 @@ jobs:
 
             ### Recommended Post-Install Steps:
 
-            * [Enable compiling native modules](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
-            * [Install ffmpeg with libfdk_aac](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-ffmpeg-with-libfdk_aac)
-            * [Install git](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Install-git)
+            * [Enable compiling native modules](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
+            * [Install ffmpeg with libfdk_aac](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-ffmpeg-with-libfdk_aac)
+            * [Install git](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-Install-git)
 
             ---
 
             <span align="center">
 
-            *If you like the [Homebridge UI](https://github.com/oznu/homebridge-config-ui-x) or the [Homebridge Synology Package Installer](https://github.com/oznu/homebridge-syno-spk) please consider [donating via PayPal](https://paypal.me/oznu) ❤️*
+            *If you like the [Homebridge UI](https://github.com/homebridge/homebridge-config-ui-x) or the [Homebridge Synology Package Installer](https://github.com/homebridge/homebridge-syno-spk) please consider [donating via PayPal](https://paypal.me/oznu) ❤️*
 
             </span>
 

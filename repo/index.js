@@ -35,12 +35,12 @@ const path = require('path');
       price: 0,
       download_count: 56691,
       recent_download_count: 1138,
-      link: `https://github.com/oznu/homebridge-syno-spk/releases/download/${version}/${spk}`,
+      link: `https://github.com/homebridge/homebridge-syno-spk/releases/download/${version}/${spk}`,
       size: fileStat.size,
       md5: md5sum,
       thumbnail: [
-       'https://raw.githubusercontent.com/oznu/homebridge-syno-spk/master/PACKAGE_ICON.PNG',
-       'https://raw.githubusercontent.com/oznu/homebridge-syno-spk/master/PACKAGE_ICON_256.PNG'
+       'https://raw.githubusercontent.com/homebridge/homebridge-syno-spk/master/PACKAGE_ICON.PNG',
+       'https://raw.githubusercontent.com/homebridge/homebridge-syno-spk/master/PACKAGE_ICON_256.PNG'
       ],
       snapshot: [],
       qinst: true,
@@ -50,8 +50,8 @@ const path = require('path');
       deppkgs: null,
       conflictpkgs: null,
       start: true,
-      maintainer: 'oznu',
-      maintainer_url: 'https://github.com/oznu/homebridge-syno-spk',
+      maintainer: 'homebridge',
+      maintainer_url: 'https://github.com/homebridge/homebridge-syno-spk',
       distributor: '',
       distributor_url: '',
       support_url: '',
