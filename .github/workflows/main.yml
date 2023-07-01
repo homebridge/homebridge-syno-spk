@@ -7,12 +7,6 @@ on:
         description: 'Version / Tag (x.x.x):'     
         required: true
 
-permissions:
-  id-token: write
-  contents: read
-  issues: write
-  pull-requests: write
-  
 jobs:
   release:
     name: Create Release
