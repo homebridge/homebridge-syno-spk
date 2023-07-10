@@ -93,7 +93,7 @@ jobs:
             NODE_ARCH: x64
           - SPK_PLATFORM: evansport
             SPK_ARCH: i686
-            NODE_ARCH: x86
+            NODE_ARCH: x64
           - SPK_PLATFORM: rtd1296
             SPK_ARCH: armv8
             NODE_ARCH: arm64
