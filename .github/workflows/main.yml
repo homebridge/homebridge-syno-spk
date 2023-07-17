@@ -172,15 +172,12 @@ jobs:
         node index.js
 
     - name: Upload synology-spk-repo.json
-      id: uploadsynology-spk-repo-json 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      id: upload-synology-spk-repo-json 
+      uses: AButler/upload-release-assets@v2.0
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: repo/spks/synology-spk-repo.json
-        asset_name: synology-spk-repo.json
-        asset_content_type: application/json
+        files: repo/spks/synology-spk-repo.json
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        release-tag: ${{ github.event.inputs.version }}
 
     - name: Upload Repo JSON to S3
       run: |
