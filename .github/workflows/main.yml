@@ -70,15 +70,15 @@ jobs:
 
             ### Recommended Post-Install Steps:
 
-            * [Enable compiling native modules](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
-            * [Install ffmpeg with libfdk_aac](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-ffmpeg-with-libfdk_aac)
-            * [Install git](https://github.com/oznu/homebridge-syno-spk/wiki/DSM-7:-Install-git)
+            * [Enable compiling native modules](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-Enable-Compiling-Of-Native-Modules)
+            * [Install ffmpeg with libfdk_aac](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-ffmpeg-with-libfdk_aac)
+            * [Install git](https://github.com/homebridge/homebridge-syno-spk/wiki/DSM-7:-Install-git)
 
             ---
 
             <span align="center">
 
-            *If you like the [Homebridge UI](https://github.com/oznu/homebridge-config-ui-x) or the [Homebridge Synology Package Installer](https://github.com/oznu/homebridge-syno-spk) please consider [donating via PayPal](https://paypal.me/oznu) ❤️*
+            *If you like the [Homebridge UI](https://github.com/homebridge/homebridge-config-ui-x) or the [Homebridge Synology Package Installer](https://github.com/homebridge/homebridge-syno-spk) please consider [donating via PayPal](https://paypal.me/oznu) ❤️*
 
             </span>
 
@@ -93,7 +93,7 @@ jobs:
             NODE_ARCH: x64
           - SPK_PLATFORM: evansport
             SPK_ARCH: i686
-            NODE_ARCH: x86
+            NODE_ARCH: x64
           - SPK_PLATFORM: rtd1296
             SPK_ARCH: armv8
             NODE_ARCH: arm64
@@ -170,6 +170,14 @@ jobs:
       run: |
         cd repo
         node index.js
+
+    - name: Upload synology-spk-repo.json
+      id: upload-synology-spk-repo-json 
+      uses: AButler/upload-release-assets@v2.0
+      with:
+        files: repo/spks/synology-spk-repo.json
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        release-tag: ${{ github.event.inputs.version }}
 
     - name: Upload Repo JSON to S3
       run: |

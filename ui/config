@@ -1,6 +1,6 @@
 {
     ".url": {
-        "oznu.homebridge": {
+        "homebridge.homebridge": {
             "title": "Homebridge",
             "desc": "Homebridge UI",
             "icon": "images/icon_256.png",
