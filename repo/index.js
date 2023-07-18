@@ -14,6 +14,7 @@ const path = require('path');
     rtd1296: ['armv8', 'rtd1296'],
     armada37xx: ['armada37xx'],
     armada38x: ['armada38x'],
+    monaco: ['monaco'],
   }
   const spksDir = path.resolve(__dirname, 'spks');
   const spks = (await fs.readdir(spksDir)).filter(x => x.endsWith('.spk'));
