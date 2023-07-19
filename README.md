@@ -18,7 +18,6 @@ This third-party Synology Package simplifies the process of running [Homebridge]
 * **armada37xx** (armv8) - DS120j, DS119j
 * **armada38x** (armv7) - DS419slim, DS218j, RS217, RS816, DS416j, DS416slim, DS216, DS216j, DS116
 * **alpine** (armv7) - DS1817, DS1517, DS416, DS2015xs, DS1515, DS715, DS215+
-* **monaco** (armv7) - DS216play
 
 ## Installation
 

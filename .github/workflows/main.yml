@@ -106,9 +106,6 @@ jobs:
           - SPK_PLATFORM: alpine
             SPK_ARCH: armv7
             NODE_ARCH: armv7l
-          - SPK_PLATFORM: monaco
-            SPK_ARCH: monaco
-            NODE_ARCH: armv7l
 
     runs-on: ubuntu-latest
 
