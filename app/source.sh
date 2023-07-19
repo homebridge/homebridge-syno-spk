@@ -3,7 +3,14 @@
 NODE_BIN_PATH="/var/packages/homebridge/target/app/bin"
 
 export HB_SERVICE_STORAGE_PATH="$(readlink -f /var/packages/homebridge/shares/homebridge)"
-export HB_SERVICE_NODE_EXEC_PATH="/var/packages/homebridge/target/app/bin/node"
+
+# Use Synology supplied NodeJS v18 if installed - https://github.com/homebridge/homebridge-syno-spk/issues/124
+if [ -f /var/packages/Node.js_v18/target/usr/local/bin/node ]; then
+  export HB_SERVICE_NODE_EXEC_PATH="/var/packages/Node.js_v18/target/usr/local/bin/node"
+else
+  export HB_SERVICE_NODE_EXEC_PATH="/var/packages/homebridge/target/app/bin/node"
+fi
+
 export HB_SERVICE_EXEC_PATH="/var/packages/homebridge/target/app/lib/node_modules/homebridge-config-ui-x/dist/bin/hb-service.js"
 
 # synocommunity ffmpeg path
