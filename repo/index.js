@@ -32,6 +32,7 @@ const path = require('path');
       version: version,
       dname: 'Homebridge',
       desc: 'Homebridge on Synology DSM.',
+      install_dep_packages: 'Node.js_v18',
       price: 0,
       download_count: 56691,
       recent_download_count: 1138,
