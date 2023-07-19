@@ -23,6 +23,10 @@ This third-party Synology Package simplifies the process of running [Homebridge]
 
 This package will deploy Homebridge and the Homebridge UI natively on your Synology NAS. It will create a new shared named `homebridge` to store the Homebridge configuration and user data.
 
+#### Dependencies
+
+This package will leverage the Synology supplied NodeJS package if installed ( Which is required on DSM version < 7.2 )
+
 #### Add the Homebridge Synology Package Source:
 
 1. Open Package Center in DSM and select the `Settings` option.
