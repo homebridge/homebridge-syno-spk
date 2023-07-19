@@ -25,7 +25,7 @@ This package will deploy Homebridge and the Homebridge UI natively on your Synol
 
 #### Dependencies
 
-This package will leverage the Synology supplied NodeJS package if installed ( Which is required on DSM version < 7.2 )
+This package will leverage the Synology supplied NodeJS v18 package 
 
 #### Add the Homebridge Synology Package Source:
 
