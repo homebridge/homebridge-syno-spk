@@ -17,6 +17,7 @@ silent_upgrade="no"
 adminprotocol="http"
 adminurl=""
 adminport="8581"
+install_dep_packages="Node.js_v18"
 
 displayname="Homebridge"
 description="Homebridge on Synology DSM."
