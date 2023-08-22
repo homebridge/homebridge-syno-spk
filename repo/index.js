@@ -11,7 +11,7 @@ const path = require('path');
       'kvmx64', 'purley', 'skylaked', 'v1000', 'r1000'],
     evansport: ['i686', 'evansport'],
     alpine: ['armv7', 'alpine', 'alpine4k'],
-    rtd1296: ['armv8', 'rtd1296'],
+    rtd1296: ['armv8', 'rtd1296', 'rtd1619b'],
     armada37xx: ['armada37xx'],
     armada38x: ['armada38x'],
   }
