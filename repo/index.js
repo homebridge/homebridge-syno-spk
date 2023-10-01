@@ -39,8 +39,8 @@ const path = require('path');
       size: fileStat.size,
       md5: md5sum,
       thumbnail: [
-       'https://raw.githubusercontent.com/homebridge/homebridge-syno-spk/master/PACKAGE_ICON.PNG',
-       'https://raw.githubusercontent.com/homebridge/homebridge-syno-spk/master/PACKAGE_ICON_256.PNG'
+       'https://raw.githubusercontent.com/homebridge/homebridge-syno-spk/latest/PACKAGE_ICON.PNG',
+       'https://raw.githubusercontent.com/homebridge/homebridge-syno-spk/latest/PACKAGE_ICON_256.PNG'
       ],
       snapshot: [],
       qinst: true,
