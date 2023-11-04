@@ -7,7 +7,7 @@ set -e
 mkdir -p /toolkit/source
 cp -R $GITHUB_WORKSPACE /toolkit/source/homebridge-syno-spk
 
-# grap the node.js binary
+# grab the node.js binary
 cd /toolkit/source/homebridge-syno-spk
 
 NODE_LTS="$(curl -s https://nodejs.org/dist/index.json | jq -r 'map(select(.lts))[0].version')"
