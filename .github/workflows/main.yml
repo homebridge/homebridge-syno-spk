@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create Release
         id: create_release
@@ -116,7 +116,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Setup Toolchain
       run: |
@@ -144,15 +144,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: lts/*
 
     - name: Get the release
       id: get_release
-      uses: cardinalby/git-get-release-action@1.2.2
+      uses: cardinalby/git-get-release-action@1.2.4
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
@@ -179,7 +179,7 @@ jobs:
 
     - name: Upload synology-spk-repo.json
       id: upload-synology-spk-repo-json 
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0
       with:
         files: repo/spks/synology-spk-repo.json
         repo-token: ${{ secrets.GITHUB_TOKEN }}
