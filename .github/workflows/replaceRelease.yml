@@ -1,0 +1,40 @@
+name: Rollback / Replace Release file
+run-name: Rollback / Replace Release file ${{ github.event.inputs.version }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version / Tag (x.x.x):'     
+        required: true
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get the release
+      id: get_release
+      uses: cardinalby/git-get-release-action@1.2.4
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        tag: ${{ github.event.inputs.version }}
+
+    - name: Download release assets
+      uses: dsaltares/fetch-gh-release-asset@0.0.8
+      with:
+        version: ${{ steps.get_release.outputs.id }}
+        regex: true
+        file: "homebridge-.*\\.json"
+        target: "repo/spks/"
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload Repo JSON to S3
+      run: |
+        cat repo/spks/synology-spk-repo.json | jq
+        aws s3 cp repo/spks/synology-spk-repo.json s3://repo.homebridge.io/
+      env:
+        AWS_EC2_METADATA_DISABLED: true
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
