@@ -10,7 +10,7 @@ on:
 
 jobs:
   release:
-    name: Create Release
+    name: Replace Release file
     runs-on: ubuntu-latest
     steps:
     - name: Get the release
@@ -26,7 +26,7 @@ jobs:
       with:
         version: ${{ steps.get_release.outputs.id }}
         regex: true
-        file: "homebridge-.*\\.json"
+        file: "synology-spk-repo.json"
         target: "repo/spks/"
         token: ${{ secrets.GITHUB_TOKEN }}
 
