@@ -3,7 +3,7 @@
 </p>
 
 [![GitHub release](https://img.shields.io/github/release/homebridge/homebridge-syno-spk.svg)](https://github.com/homebridge/homebridge-syno-spk/releases/latest)
-[![Build](https://github.com/homebridge/homebridge-syno-spk/workflows/Build/badge.svg)](https://github.com/homebridge/homebridge-syno-spk/actions)
+[![Build and Publish](https://github.com/homebridge/homebridge-syno-spk/actions/workflows/main.yml/badge.svg)](https://github.com/homebridge/homebridge-syno-spk/actions/workflows/main.yml)
 [![Donate](https://badgen.net/badge/donate/paypal/yellow)](https://paypal.me/oznu)
 
 # Homebridge Package for Synology DSM
@@ -26,7 +26,7 @@ This package will deploy Homebridge and the Homebridge UI natively on your Synol
 
 #### Dependencies
 
-This package will leverage the Synology supplied NodeJS v18 package 
+This package will leverage the Synology supplied NodeJS v20 package 
 
 #### Add the Homebridge Synology Package Source:
 

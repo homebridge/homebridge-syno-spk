@@ -50,7 +50,7 @@ jobs:
 
             #### Dependencies
 
-            This package will leverage the Synology supplied NodeJS v18 package.
+            This package will leverage the Synology supplied NodeJS v20 package.
             
             #### Add the Homebridge Synology Package Source:
 
