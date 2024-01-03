@@ -92,6 +92,7 @@ jobs:
     name: Build Packages
     needs: release
     strategy:
+      fail-fast: false
       matrix:
         include:
           - SPK_PLATFORM: braswell
