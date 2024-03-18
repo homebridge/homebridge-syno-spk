@@ -20,6 +20,11 @@ This third-party Synology Package simplifies the process of running [Homebridge]
 * **armada38x** (armv7) - DS419slim, DS218j, RS217, RS816, DS416j, DS416slim, DS216, DS216j, DS116
 * **alpine** (armv7) - DS1817, DS1517, DS416, DS2015xs, DS1515, DS715, DS215+
 
+### Unsupported Models
+
+* **comcerto2k** - DS-414j do not support nodeJS
+
+
 ## Installation
 
 This package will deploy Homebridge and the Homebridge UI natively on your Synology NAS. It will create a new shared named `homebridge` to store the Homebridge configuration and user data.
