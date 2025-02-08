@@ -18,11 +18,12 @@ This third-party Synology Package simplifies the process of running [Homebridge]
 * **rtd1619b** (armv8) - DS124, DS223, DS223j, DS423
 * **armada37xx** (armv8) - DS120j, DS119j
 * **armada38x** (armv7) - DS419slim, DS218j, RS217, RS816, DS416j, DS416slim, DS216, DS216j, DS116
-* **alpine** (armv7) - DS1817, DS1517, DS416, DS2015xs, DS1515, DS715, DS215+
+* **alpine** (armv7) - DS1817, DS1517, DS416, DS1515, DS715, DS215+
 
 ### Unsupported Models
 
 * **comcerto2k** - DS-414j do not support nodeJS
+* **alpine** (armv7) - DS2015xs do not support nodeJS
 
 
 ## Installation
