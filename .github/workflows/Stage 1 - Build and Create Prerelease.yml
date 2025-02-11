@@ -1,11 +1,11 @@
-name: Build and Publish
-run-name: Build and Publish ${{ github.event.inputs.version }}
+name: Stage 1 - Build and Create Pre Release
+run-name: Build and Create Pre Release ${{ github.event.inputs.version }}
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version / Tag (x.x.x):'     
+        description: 'Release TAG to be created (x.x.x):'     
         required: true
 
 jobs:
@@ -186,11 +186,14 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release-tag: ${{ github.event.inputs.version }}
 
-    - name: Upload Repo JSON to S3
-      run: |
-        cat repo/spks/synology-spk-repo.json | jq
-        aws s3 cp repo/spks/synology-spk-repo.json s3://repo.homebridge.io/
-      env:
-        AWS_EC2_METADATA_DISABLED: true
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: Pre Release Created
+      run: echo "::notice::Pre Release Created - ${{ github.event.inputs.version }}"
+
+#    - name: Upload Repo JSON to S3
+#     run: |
+#        cat repo/spks/synology-spk-repo.json | jq
+#        aws s3 cp repo/spks/synology-spk-repo.json s3://repo.homebridge.io/
+#      env:
+#        AWS_EC2_METADATA_DISABLED: true
+#        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

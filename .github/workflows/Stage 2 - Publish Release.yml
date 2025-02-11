@@ -1,11 +1,11 @@
-name: Rollback / Replace Release file
-run-name: Rollback / Replace Release file ${{ github.event.inputs.version }}
+name: Stage 2 - Publish Release
+run-name: Stage 2 - Publish Release ${{ github.event.inputs.version }}
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version / Tag (x.x.x):'     
+        description: 'Github Release Tag to Publish as latest (x.x.x):'     
         required: true
 
 jobs:
