@@ -32,7 +32,7 @@ This package will deploy Homebridge and the Homebridge UI natively on your Synol
 
 #### Dependencies
 
-This package will leverage the Synology supplied NodeJS v20 package 
+This package will leverage the Synology supplied NodeJS v22 package 
 
 #### Add the Homebridge Synology Package Source:
 
