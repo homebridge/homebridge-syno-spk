@@ -34,19 +34,10 @@ This package will deploy Homebridge and the Homebridge UI natively on your Synol
 
 This package will leverage the Synology supplied NodeJS v22 package 
 
-#### Add the Homebridge Synology Package Source:
-
-1. Open Package Center in DSM and select the `Settings` option.
-2. Select the `Package Sources` tab.
-3. Click `Add`
-4. In the `Name` section enter `Homebridge`
-5. In the `Location` section enter `https://synology.homebridge.io`
-6. Click `OK`
-
 #### Install Homebridge:
 
-1. Go back to Package Center and search for `Homebridge`
-2. Click on the `Homebridge` package then select `Install`
+1. Download the correct SPK for your system from https://synology.homebridge.io (see above for arch types):
+2. Go back to Package Center and click "Manual Install" - select the .spk file you downloaded.
 3. Click `Agree` when warned about using a package from an unknown publisher.
 4. Click `Done` to confirm installation. 
 
