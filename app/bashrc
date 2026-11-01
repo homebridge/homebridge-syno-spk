@@ -1,5 +1,6 @@
 #!/bin/sh
 
+BOLD='\033[1m'
 GREEN='\033[1;32m'
 CYAN='\033[0;36m'
 NC='\033[0m'
@@ -13,8 +14,6 @@ printf "${GREEN}Homebridge Terminal for Synology DSM${NC}\n\n"
 printf "${BOLD}Node.js Version:${NC} ${GREEN}$(node -v)${NC}\n"
 printf "${BOLD}Node.js Path:${NC} ${GREEN}$(which node)${NC}\n"
 printf "${BOLD}Plugin Path:${NC} ${GREEN}${UIX_CUSTOM_PLUGIN_PATH}${NC}\n\n"
-
-printf "${BOLD}Update Node.js:${NC} ${GREEN}hb-service update-node${NC}\n\n"
 
 printf "${BOLD}Install Plugin:${NC} ${GREEN}hb-service add homebridge-plugin-name${NC}\n"
 printf "${BOLD}Remove Plugin:${NC} ${GREEN}hb-service remove homebridge-plugin-name${NC}\n\n"
