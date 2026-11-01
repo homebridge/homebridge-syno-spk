@@ -3,16 +3,10 @@
 export HB_SERVICE_STORAGE_PATH="$(readlink -f /var/packages/homebridge/shares/homebridge)"
 NODE_BIN_PATH="/var/packages/homebridge/target/app/bin"
 
-# Use Synology supplied NodeJS v18 - https://github.com/homebridge/homebridge-syno-spk/issues/124
+# Use Synology's Node.js v22 package, which the package installs as a dependency
 if [ -f /var/packages/Node.js_v22/target/usr/local/bin/node ]; then
   NODE_BIN_PATH="/var/packages/Node.js_v22/target/usr/local/bin:$NODE_BIN_PATH"
   export HB_SERVICE_NODE_EXEC_PATH="/var/packages/Node.js_v22/target/usr/local/bin/node"
-elif [ -f /var/packages/Node.js_v20/target/usr/local/bin/node ]; then
-  NODE_BIN_PATH="/var/packages/Node.js_v20/target/usr/local/bin:$NODE_BIN_PATH"
-  export HB_SERVICE_NODE_EXEC_PATH="/var/packages/Node.js_v20/target/usr/local/bin/node"
-elif [ -f /var/packages/Node.js_v18/target/usr/local/bin/node ]; then
-  NODE_BIN_PATH="/var/packages/Node.js_v18/target/usr/local/bin:$NODE_BIN_PATH"
-  export HB_SERVICE_NODE_EXEC_PATH="/var/packages/Node.js_v18/target/usr/local/bin/node"
 else
   export HB_SERVICE_NODE_EXEC_PATH="/var/packages/homebridge/target/app/bin/node"
 fi
