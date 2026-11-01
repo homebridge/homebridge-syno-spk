@@ -26,7 +26,7 @@ if [ -e "$HB_SERVICE_STORAGE_PATH/package.json" ]; then
   if [ "$(cat $HB_SERVICE_STORAGE_PATH/package.json | jq -r '.dependencies."homebridge-config-ui-x"')" != "null" ]; then
     packageJson="$(cat $HB_SERVICE_STORAGE_PATH/package.json | jq -rM 'del(."dependencies"."homebridge-config-ui-x")')"
     if [ "$?" = "0" ]; then
-      printf "$packageJson" > "$HB_SERVICE_STORAGE_PATH/package.json"
+      printf '%s\n' "$packageJson" > "$HB_SERVICE_STORAGE_PATH/package.json"
       echo "Removed homebridge-config-ui-x from package.json"
     fi
   fi
