@@ -5,7 +5,7 @@ package="homebridge"
 . "/pkgscripts-ng/include/pkg_util.sh"
 
 version=${SPK_PACKAGE_VERSION:-1.0.0}
-os_min_ver="7.0-40761"
+os_min_ver="7.2-60085"
 maintainer="homebridge"
 thirdparty="yes"
 arch="${SPK_ARCH:-x86_64}"
