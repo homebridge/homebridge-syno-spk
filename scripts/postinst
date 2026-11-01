@@ -1,5 +1,5 @@
 #!/bin/sh
 
-./$SYNOPKG_PKGDEST/app/install.sh
+"$SYNOPKG_PKGDEST/app/install.sh"
 
 exit 0
