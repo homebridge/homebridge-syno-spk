@@ -3,17 +3,16 @@
 </p>
 
 [![GitHub release](https://img.shields.io/github/release/homebridge/homebridge-syno-spk.svg)](https://github.com/homebridge/homebridge-syno-spk/releases/latest)
-[![Build and Publish](https://github.com/homebridge/homebridge-syno-spk/actions/workflows/main.yml/badge.svg)](https://github.com/homebridge/homebridge-syno-spk/actions/workflows/main.yml)
+[![Build](https://github.com/homebridge/homebridge-syno-spk/actions/workflows/Stage%201%20-%20Build%20and%20Create%20Prerelease.yml/badge.svg)](https://github.com/homebridge/homebridge-syno-spk/actions/workflows/Stage%201%20-%20Build%20and%20Create%20Prerelease.yml)
 [![Donate](https://badgen.net/badge/donate/paypal/yellow)](https://paypal.me/oznu)
 
 # Homebridge Package for Synology DSM
 
-This third-party Synology Package simplifies the process of running [Homebridge](https://github.com/nfarina/homebridge) on Synology NAS devices running DSM 7.
+This third-party Synology Package simplifies the process of running [Homebridge](https://github.com/homebridge/homebridge) on Synology NAS devices running DSM 7.2 or newer.
 
 ## Supported Models
 
-* **x86_64** - All 64 bit Intel / AMD CPU Models ( braswell )
-* **evansport** (i686) - DS414play, DS415play ( evansport )
+* **x86_64** - All 64-bit Intel / AMD CPU models ( braswell )
 * **rtd1296** (armv8) - DS420j, DS220j, RS819, DS418, DS218, DS218play, DS118
 * **rtd1619b** (armv8) - DS124, DS223, DS223j, DS423
 * **armada37xx** (armv8) - DS120j, DS119j
@@ -22,8 +21,9 @@ This third-party Synology Package simplifies the process of running [Homebridge]
 
 ### Unsupported Models
 
-* **comcerto2k** - DS-414j do not support nodeJS
-* **alpine** (armv7) - DS2015xs do not support nodeJS
+* **comcerto2k** - DS414j - no Node.js
+* **evansport** (i686) - DS414play, DS415play - Synology does not offer its Node.js v22 package for these
+* **alpine** (armv7) - DS2015xs - no Node.js
 
 
 ## Installation
@@ -32,22 +32,33 @@ This package will deploy Homebridge and the Homebridge UI natively on your Synol
 
 #### Dependencies
 
-This package will leverage the Synology supplied NodeJS v22 package 
+This package uses the Node.js v22 package supplied by Synology. Package Center installs it for you if you do not have it. Synology only offers it on DSM 7.2 and newer.
+
+#### Add the Homebridge Package Source:
+
+1. Open Package Center in DSM and select `Settings`.
+2. Select the `Package Sources` tab.
+3. Click `Add`.
+4. In `Name`, enter `Homebridge`.
+5. In `Location`, enter `https://synology.homebridge.io`.
+6. Click `OK`.
 
 #### Install Homebridge:
 
-1. Download the correct SPK for your system from https://synology.homebridge.io (see above for arch types):
-2. Go back to Package Center and click "Manual Install" - select the .spk file you downloaded.
+1. Go back to Package Center and search for `Homebridge`.
+2. Click on the `Homebridge` package, then select `Install`.
 3. Click `Agree` when warned about using a package from an unknown publisher.
-4. Click `Done` to confirm installation. 
+4. Click `Done` to confirm installation.
 
-*Please note low power device make take 10-15 minutes to install the package.*
+You can also download the `.spk` file for your model from the [releases page](https://github.com/homebridge/homebridge-syno-spk/releases/latest) and install it with `Manual Install` in Package Center. The rtd1619b models use the rtd1296 file.
+
+*Please note low power devices may take 10-15 minutes to install the package.*
 
 Once the install has completed, a new Homebridge menu item will be shown in DSM which will open the Homebridge UI.
 
 The Homebridge UI app starts on port `8581`.
 
-If you have the Synology Firewall enabled, make a rule to allow access to port 8581 and the port Homebridge was assigned too.
+If you have the Synology Firewall enabled, make a rule to allow access to port 8581 and the port Homebridge was assigned to.
 
 ### Recommended Optional Steps:
 
@@ -60,7 +71,7 @@ If you have the Synology Firewall enabled, make a rule to allow access to port 8
 If you have an issue with the installation of Homebridge using this package please raise an issue on this project's GitHub page. For everything else:
 
 * Homebridge UI Issues: [homebridge/homebridge-config-ui-x](https://github.com/homebridge/homebridge-config-ui-x)
-* General Homebridge Issues: [nfarina/homebridge](https://github.com/nfarina/homebridge)
+* General Homebridge Issues: [homebridge/homebridge](https://github.com/homebridge/homebridge)
 * For problems with individual plugins please raise issues on the relevant GitHub project page.
 
 ## Contributing
@@ -69,7 +80,7 @@ Pull requests are welcome.
 
 ## Setting up for development
 
-See the [Synology DSM Developer Guide](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Firmware/DSM/7.0/enu/DSM_Developer_Guide_7_0_Beta.pdf).
+See the [Synology DSM Developer Guide](https://help.synology.com/developer-guide/).
 
 ## License
 
