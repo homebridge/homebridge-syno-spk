@@ -10,7 +10,8 @@ cp -R $GITHUB_WORKSPACE /toolkit/source/homebridge-syno-spk
 # grab the node.js binary
 cd /toolkit/source/homebridge-syno-spk
 
-NODE_LTS="$(curl -s https://nodejs.org/dist/index.json | jq -r 'map(select(.lts))[0].version')"
+# newest LTS with a build for this arch - Node.js v24+ has no 32-bit ARM builds
+NODE_LTS="$(curl -s https://nodejs.org/dist/index.json | jq -r --arg file "linux-$NODE_ARCH" 'map(select(.lts and (.files | index($file))))[0].version')"
 [ "$NODE_ARCH" = "x86" ] &&
   wget https://unofficial-builds.nodejs.org/download/release/$NODE_LTS/node-$NODE_LTS-linux-$NODE_ARCH.tar.gz -O node-linux-${NODE_ARCH}.tar.gz ||
   wget https://nodejs.org/dist/$NODE_LTS/node-$NODE_LTS-linux-${NODE_ARCH}.tar.gz -O node-linux-${NODE_ARCH}.tar.gz
