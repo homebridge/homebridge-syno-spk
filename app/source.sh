@@ -19,10 +19,13 @@ fi
 
 export HB_SERVICE_EXEC_PATH="/var/packages/homebridge/target/app/lib/node_modules/homebridge-config-ui-x/dist/bin/hb-service.js"
 
-# synocommunity ffmpeg path
-if [ -d /var/packages/ffmpeg/target/bin ]; then
-  export PATH="/var/packages/ffmpeg/target/bin:$PATH"
-fi
+# SynoCommunity ffmpeg - use the newest installed version
+for ffmpeg_pkg in ffmpeg8 ffmpeg7 ffmpeg6 ffmpeg5 ffmpeg; do
+  if [ -d "/var/packages/$ffmpeg_pkg/target/bin" ]; then
+    export PATH="/var/packages/$ffmpeg_pkg/target/bin:$PATH"
+    break
+  fi
+done
 
 # entware path
 if [ -d /opt/bin ]; then
